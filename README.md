@@ -1,4 +1,4 @@
-# 📚 Projeto BookStore - Teste Técnico
+# 🍳 Projeto RecipeHub - Teste Técnico
 
 ## ⏱️ Tempo Estimado
 
@@ -7,8 +7,8 @@
 | Etapa | Tempo |
 |-------|-------|
 | Setup dos projetos | 1-2h |
-| Backend (auth, users, books) | 3-7h |
-| Frontend público (listagem, detalhes, busca, login) | 2-5h |
+| Backend (auth, categories, recipes) | 3-7h |
+| Frontend público (listagem, detalhes, filtros, login) | 2-5h |
 | Frontend admin (lazy loading aninhado, CRUD) | 3-7h |
 | Integração e ajustes finais | 1-3h |
 
@@ -16,7 +16,7 @@
 
 ## Sobre
 
-Aplicação de listagem de livros com área administrativa.
+Aplicação de receitas culinárias com área administrativa.
 
 - **Backend**: NestJS + JWT + MySQL
 - **Frontend**: Angular
@@ -57,25 +57,25 @@ backend/
 │   │       ├── auth.service.ts
 │   │       ├── jwt.strategy.ts
 │   │       └── index.ts
-│   ├── users/
-│   │   ├── users.controller.ts
-│   │   ├── users.module.ts
+│   ├── categories/
+│   │   ├── categories.controller.ts
+│   │   ├── categories.module.ts
 │   │   ├── index.ts
 │   │   └── utils/
-│   │       ├── users.dto.ts
-│   │       ├── users-filter.dto.ts
-│   │       ├── users.entity.ts
-│   │       ├── users.service.ts
+│   │       ├── categories.dto.ts
+│   │       ├── categories-filter.dto.ts
+│   │       ├── categories.entity.ts
+│   │       ├── categories.service.ts
 │   │       └── index.ts
-│   ├── books/
-│   │   ├── books.controller.ts
-│   │   ├── books.module.ts
+│   ├── recipes/
+│   │   ├── recipes.controller.ts
+│   │   ├── recipes.module.ts
 │   │   ├── index.ts
 │   │   └── utils/
-│   │       ├── books.dto.ts
-│   │       ├── books-filter.dto.ts
-│   │       ├── books.entity.ts
-│   │       ├── books.service.ts
+│   │       ├── recipes.dto.ts
+│   │       ├── recipes-filter.dto.ts
+│   │       ├── recipes.entity.ts
+│   │       ├── recipes.service.ts
 │   │       └── index.ts
 │   ├── shared/
 │   │   └── (guards, interceptors, decorators)
@@ -93,18 +93,18 @@ frontend/
 │   │   │   ├── models/
 │   │   │   ├── constants/
 │   │   │   └── guards/
-│   │   ├── books/
-│   │   │   ├── books.module.ts
-│   │   │   ├── books-routing.module.ts
-│   │   │   ├── books.component.ts
-│   │   │   ├── books.component.html
-│   │   │   └── books.component.scss
-│   │   ├── book-detail/
-│   │   │   ├── book-detail.module.ts
-│   │   │   ├── book-detail-routing.module.ts
-│   │   │   ├── book-detail.component.ts
-│   │   │   ├── book-detail.component.html
-│   │   │   └── book-detail.component.scss
+│   │   ├── recipes/
+│   │   │   ├── recipes.module.ts
+│   │   │   ├── recipes-routing.module.ts
+│   │   │   ├── recipes.component.ts
+│   │   │   ├── recipes.component.html
+│   │   │   └── recipes.component.scss
+│   │   ├── recipe-detail/
+│   │   │   ├── recipe-detail.module.ts
+│   │   │   ├── recipe-detail-routing.module.ts
+│   │   │   ├── recipe-detail.component.ts
+│   │   │   ├── recipe-detail.component.html
+│   │   │   └── recipe-detail.component.scss
 │   │   ├── login/
 │   │   │   ├── login.module.ts
 │   │   │   ├── login-routing.module.ts
@@ -117,38 +117,38 @@ frontend/
 │   │   │   ├── admin.component.ts
 │   │   │   ├── admin.component.html (router-outlet)
 │   │   │   ├── admin.component.scss
-│   │   │   ├── books/
-│   │   │   │   ├── books.module.ts
-│   │   │   │   ├── books-routing.module.ts
-│   │   │   │   ├── books.component.ts
-│   │   │   │   ├── books.component.html (router-outlet)
-│   │   │   │   ├── books.component.scss
-│   │   │   │   ├── book-list/
-│   │   │   │   │   ├── book-list.module.ts
-│   │   │   │   │   ├── book-list.component.ts
-│   │   │   │   │   ├── book-list.component.html
-│   │   │   │   │   └── book-list.component.scss
-│   │   │   │   └── book-edit/
-│   │   │   │       ├── book-edit.module.ts
-│   │   │   │       ├── book-edit.component.ts
-│   │   │   │       ├── book-edit.component.html
-│   │   │   │       └── book-edit.component.scss
-│   │   │   └── users/
-│   │   │       ├── users.module.ts
-│   │   │       ├── users-routing.module.ts
-│   │   │       ├── users.component.ts
-│   │   │       ├── users.component.html (router-outlet)
-│   │   │       ├── users.component.scss
-│   │   │       ├── user-list/
-│   │   │       │   ├── user-list.module.ts
-│   │   │       │   ├── user-list.component.ts
-│   │   │       │   ├── user-list.component.html
-│   │   │       │   └── user-list.component.scss
-│   │   │       └── user-edit/
-│   │   │           ├── user-edit.module.ts
-│   │   │           ├── user-edit.component.ts
-│   │   │           ├── user-edit.component.html
-│   │   │           └── user-edit.component.scss
+│   │   │   ├── recipes/
+│   │   │   │   ├── recipes.module.ts
+│   │   │   │   ├── recipes-routing.module.ts
+│   │   │   │   ├── recipes.component.ts
+│   │   │   │   ├── recipes.component.html (router-outlet)
+│   │   │   │   ├── recipes.component.scss
+│   │   │   │   ├── recipe-list/
+│   │   │   │   │   ├── recipe-list.module.ts
+│   │   │   │   │   ├── recipe-list.component.ts
+│   │   │   │   │   ├── recipe-list.component.html
+│   │   │   │   │   └── recipe-list.component.scss
+│   │   │   │   └── recipe-edit/
+│   │   │   │       ├── recipe-edit.module.ts
+│   │   │   │       ├── recipe-edit.component.ts
+│   │   │   │       ├── recipe-edit.component.html
+│   │   │   │       └── recipe-edit.component.scss
+│   │   │   └── categories/
+│   │   │       ├── categories.module.ts
+│   │   │       ├── categories-routing.module.ts
+│   │   │       ├── categories.component.ts
+│   │   │       ├── categories.component.html (router-outlet)
+│   │   │       ├── categories.component.scss
+│   │   │       ├── category-list/
+│   │   │       │   ├── category-list.module.ts
+│   │   │       │   ├── category-list.component.ts
+│   │   │       │   ├── category-list.component.html
+│   │   │       │   └── category-list.component.scss
+│   │   │       └── category-edit/
+│   │   │           ├── category-edit.module.ts
+│   │   │           ├── category-edit.component.ts
+│   │   │           ├── category-edit.component.html
+│   │   │           └── category-edit.component.scss
 │   │   ├── app.module.ts
 │   │   ├── app-routing.module.ts
 │   │   ├── app.component.ts
@@ -166,19 +166,43 @@ frontend/
 **auth/** - Login com JWT
 - POST /auth/login
 
-**users/** - CRUD de usuários (protegido)
-- GET /users
-- GET /users/:id
-- POST /users
-- PUT /users/:id
-- DELETE /users/:id
+**categories/** - CRUD de categorias (protegido)
+- GET /categories (público, para filtros)
+- GET /categories/:id
+- POST /categories (protegido)
+- PUT /categories/:id (protegido)
+- DELETE /categories/:id (protegido)
 
-**books/** - CRUD de livros
-- GET /books (público, com busca via query `search`)
-- GET /books/:id (público)
-- POST /books (protegido)
-- PUT /books/:id (protegido)
-- DELETE /books/:id (protegido)
+**recipes/** - CRUD de receitas
+- GET /recipes (público, com busca via query `search` e filtro por `categoryId`)
+- GET /recipes/:id (público)
+- POST /recipes (protegido)
+- PUT /recipes/:id (protegido)
+- DELETE /recipes/:id (protegido)
+
+### Entidades
+
+**Category**
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| id | number | ID único |
+| name | string | Nome da categoria (ex: Sobremesas, Massas, Saladas) |
+| description | string | Descrição da categoria |
+| createdAt | Date | Data de criação |
+
+**Recipe**
+| Campo | Tipo | Descrição |
+|-------|------|-----------|
+| id | number | ID único |
+| title | string | Título da receita |
+| description | string | Descrição breve |
+| ingredients | text | Lista de ingredientes |
+| instructions | text | Modo de preparo |
+| preparationTime | number | Tempo de preparo em minutos |
+| servings | number | Número de porções |
+| difficulty | enum | Nível de dificuldade (easy, medium, hard) |
+| categoryId | number | FK para categoria |
+| createdAt | Date | Data de criação |
 
 ### Estrutura de cada módulo
 
@@ -189,8 +213,8 @@ frontend/
 ├── index.ts
 └── utils/
     ├── {modulo}.dto.ts
-    ├── {modulo}-filter.dto.ts (users e books)
-    ├── {modulo}.entity.ts (users e books)
+    ├── {modulo}-filter.dto.ts (categories e recipes)
+    ├── {modulo}.entity.ts (categories e recipes)
     ├── {modulo}.service.ts
     └── index.ts
 ```
@@ -205,8 +229,8 @@ Usar `index.ts` para exportar os arquivos e facilitar imports.
 
 | Rota | Componente | Descrição |
 |------|------------|-----------|
-| `/` ou `/books` | BooksComponent | Listagem de livros com busca |
-| `/books/:id` | BookDetailComponent | Detalhes do livro |
+| `/` ou `/recipes` | RecipesComponent | Listagem de receitas com busca e filtro por categoria |
+| `/recipes/:id` | RecipeDetailComponent | Detalhes da receita (ingredientes, modo de preparo) |
 | `/login` | LoginComponent | Login |
 
 ### Admin (protegido, lazy loading aninhado)
@@ -214,20 +238,47 @@ Usar `index.ts` para exportar os arquivos e facilitar imports.
 | Rota | Componente | Descrição |
 |------|------------|-----------|
 | `/admin` | AdminComponent | Layout admin (router-outlet) |
-| `/admin/books` | BooksComponent | Container (router-outlet) |
-| `/admin/books` | BookListComponent | Listagem |
-| `/admin/books/new` | BookEditComponent | Cadastro |
-| `/admin/books/:id/edit` | BookEditComponent | Edição |
-| `/admin/users` | UsersComponent | Container (router-outlet) |
-| `/admin/users` | UserListComponent | Listagem |
-| `/admin/users/new` | UserEditComponent | Cadastro |
-| `/admin/users/:id/edit` | UserEditComponent | Edição |
+| `/admin/recipes` | RecipesComponent | Container (router-outlet) |
+| `/admin/recipes` | RecipeListComponent | Listagem |
+| `/admin/recipes/new` | RecipeEditComponent | Cadastro |
+| `/admin/recipes/:id/edit` | RecipeEditComponent | Edição |
+| `/admin/categories` | CategoriesComponent | Container (router-outlet) |
+| `/admin/categories` | CategoryListComponent | Listagem |
+| `/admin/categories/new` | CategoryEditComponent | Cadastro |
+| `/admin/categories/:id/edit` | CategoryEditComponent | Edição |
 
 ### Estrutura
 
 - **shared/**: componentes, services, pipes, directives, models, constants, guards (cada item com seu próprio módulo)
 - **Componentes de rota**: importam do shared e montam a página
-- **Lazy loading aninhado**: app → admin → books/users → list/edit
+- **Lazy loading aninhado**: app → admin → recipes/categories → list/edit
+
+---
+
+## Funcionalidades Específicas
+
+### Listagem Pública de Receitas
+- Campo de busca por título
+- Dropdown de filtro por categoria (carrega categorias via GET /categories)
+- Exibir: título, tempo de preparo, dificuldade, categoria
+
+### Detalhes da Receita
+- Título e descrição
+- Lista de ingredientes formatada
+- Modo de preparo passo a passo
+- Tempo de preparo e porções
+- Nível de dificuldade (com ícone ou badge colorido)
+- Categoria
+
+### Formulário de Receita (Admin)
+- Campos obrigatórios: title, ingredients, instructions, preparationTime, servings, difficulty, categoryId
+- Campo description opcional
+- Dropdown de categoria
+- Dropdown de dificuldade (Fácil, Médio, Difícil)
+
+### Formulário de Categoria (Admin)
+- Campos obrigatórios: name
+- Campo description opcional
 
 ---
 
@@ -238,6 +289,7 @@ Usar `index.ts` para exportar os arquivos e facilitar imports.
 3. Nenhum componente standalone no frontend
 4. Cada item do shared tem seu próprio módulo
 5. Não criar migrations (usar sync do TypeORM)
+6. Relacionamento: Recipe pertence a uma Category (ManyToOne)
 
 ---
 
@@ -249,6 +301,7 @@ Usar `index.ts` para exportar os arquivos e facilitar imports.
 - Lazy loading
 - Uso de módulos (sem standalone)
 - Uso de index.ts
+- Relacionamento entre entidades (Recipe → Category)
 
 ---
 
