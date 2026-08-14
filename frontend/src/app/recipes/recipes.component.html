@@ -10,7 +10,11 @@
     </p>
 
     <div class="hero-filters">
-      <mat-form-field appearance="outline" class="search-field">
+      <mat-form-field
+        appearance="outline"
+        subscriptSizing="dynamic"
+        class="search-field"
+      >
         <mat-icon matPrefix>search</mat-icon>
         <input
           matInput
@@ -20,7 +24,11 @@
         />
       </mat-form-field>
 
-      <mat-form-field appearance="outline" class="category-field">
+      <mat-form-field
+        appearance="outline"
+        subscriptSizing="dynamic"
+        class="category-field"
+      >
         <mat-select
           [(ngModel)]="categoryId"
           (selectionChange)="onCategoryChange()"
@@ -89,3 +97,5 @@
     <p class="loading-state">Carregando receitas...</p>
   </ng-template>
 </div>
+
+<app-public-footer></app-public-footer>
