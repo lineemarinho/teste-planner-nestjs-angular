@@ -6,7 +6,8 @@
     </button>
   </header>
 
-  <table mat-table [dataSource]="recipes" class="mat-elevation-z1">
+  <div class="table-card">
+  <table mat-table [dataSource]="recipes">
     <ng-container matColumnDef="title">
       <th mat-header-cell *matHeaderCellDef>Título</th>
       <td mat-cell *matCellDef="let recipe">{{ recipe.title }}</td>
@@ -55,4 +56,5 @@
   <p *ngIf="recipes.length === 0" class="empty-state">
     Nenhuma receita cadastrada.
   </p>
+  </div>
 </div>
