@@ -5,7 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Recipe } from '../../recipes/utils';
+import { Recipe } from '../../recipes/utils/recipes.entity';
 
 @Entity('categories')
 export class Category {

@@ -32,4 +32,12 @@ export default tseslint.config(
       "prettier/prettier": ["error", { endOfLine: "auto" }],
     },
   },
+  {
+    files: ['**/*.spec.ts'],
+    rules: {
+      // Jest mock assertions (e.g. `expect(repo.save).toHaveBeenCalled()`)
+      // routinely reference methods detached from their instance.
+      '@typescript-eslint/unbound-method': 'off',
+    },
+  },
 );

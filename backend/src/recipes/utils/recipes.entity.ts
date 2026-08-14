@@ -6,7 +6,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Category } from '../../categories/utils';
+import { Category } from '../../categories/utils/categories.entity';
 
 export enum RecipeDifficulty {
   EASY = 'easy',

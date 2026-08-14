@@ -30,9 +30,7 @@ export class RecipesController {
 
   @Public()
   @Get()
-  findAll(
-    @Query() filter: RecipesFilterDto,
-  ): Promise<PaginatedResult<Recipe>> {
+  findAll(@Query() filter: RecipesFilterDto): Promise<PaginatedResult<Recipe>> {
     return this.recipesService.findAll(filter);
   }
 
