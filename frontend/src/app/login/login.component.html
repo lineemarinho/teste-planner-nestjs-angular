@@ -1,10 +1,14 @@
 <div class="login-page">
-  <mat-card class="login-card">
-    <mat-card-header>
-      <mat-card-title>Área Administrativa</mat-card-title>
-    </mat-card-header>
+  <div class="login-wrapper">
+    <a routerLink="/recipes" class="brand">
+      <span class="brand-mark">🍳</span>
+      <span class="brand-name">RecipeHub</span>
+    </a>
 
-    <mat-card-content>
+    <div class="login-card">
+      <h1>Área administrativa</h1>
+      <p class="login-subtitle">Entre para gerenciar suas receitas.</p>
+
       <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>E-mail</mat-label>
@@ -41,6 +45,8 @@
           {{ loading ? 'Entrando...' : 'Entrar' }}
         </button>
       </form>
-    </mat-card-content>
-  </mat-card>
+    </div>
+
+    <a routerLink="/recipes" class="back-link">&larr; Voltar para o site</a>
+  </div>
 </div>

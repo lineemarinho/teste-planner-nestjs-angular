@@ -4,18 +4,61 @@
   justify-content: center;
   min-height: 100vh;
   padding: 1.5rem;
-  background: var(--rh-grafite);
+  background: var(--rh-coral-light);
+}
+
+.login-wrapper {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  margin-bottom: 2rem;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9px;
+  background: var(--rh-coral);
+  font-size: 1.2rem;
+}
+
+.brand-name {
+  font-family: var(--rh-font-display);
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--rh-grafite);
 }
 
 .login-card {
   width: 100%;
-  max-width: 380px;
-  border-radius: 12px;
+  background: var(--rh-surface);
+  border: 1px solid var(--rh-border);
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(43, 43, 43, 0.08);
+  padding: 2rem 2rem 1.75rem;
 
-  mat-card-title {
-    font-family: var(--rh-font-display);
-    font-weight: 700;
+  h1 {
+    margin: 0 0 0.35rem;
+    font-size: 1.5rem;
   }
+}
+
+.login-subtitle {
+  color: var(--rh-grafite-soft);
+  font-size: 0.9rem;
+  margin: 0 0 1.5rem;
 }
 
 .full-width {
@@ -27,4 +70,16 @@
   color: #c62828;
   font-size: 0.875rem;
   margin: 0.25rem 0 1rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  text-decoration: none;
+  color: var(--rh-grafite-soft);
+  font-size: 0.9rem;
+
+  &:hover {
+    color: var(--rh-coral);
+  }
 }
