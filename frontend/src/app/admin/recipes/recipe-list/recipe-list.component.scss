@@ -1,0 +1,28 @@
+.recipe-list-page {
+  max-width: 960px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+
+  h1 {
+    margin: 0;
+  }
+}
+
+table {
+  width: 100%;
+}
+
+.actions-cell {
+  text-align: right;
+}
+
+.empty-state {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 2rem 0;
+}

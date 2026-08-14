@@ -1,0 +1,68 @@
+.recipe-detail-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+}
+
+.detail-header {
+  margin-bottom: 2rem;
+
+  h1 {
+    margin-bottom: 0.5rem;
+  }
+
+  .description {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .badges {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1rem 0;
+
+    .category-chip {
+      background: #eef1f4;
+      border-radius: 999px;
+      padding: 0.15rem 0.65rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+  }
+
+  .info-row {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.95rem;
+    color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+section {
+  margin-bottom: 2rem;
+
+  h2 {
+    margin-bottom: 0.75rem;
+  }
+
+  ul,
+  ol {
+    padding-left: 1.25rem;
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
+
+.loading-state {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 2rem 0;
+}

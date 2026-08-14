@@ -1,0 +1,116 @@
+<div class="recipe-edit-page">
+  <h1>{{ isEditMode ? 'Editar Receita' : 'Nova Receita' }}</h1>
+
+  <form (ngSubmit)="onSubmit()" #recipeForm="ngForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Título</mat-label>
+      <input
+        matInput
+        name="title"
+        required
+        appAutofocus
+        [(ngModel)]="form.title"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descrição (opcional)</mat-label>
+      <textarea
+        matInput
+        name="description"
+        rows="2"
+        [(ngModel)]="form.description"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Ingredientes</mat-label>
+      <textarea
+        matInput
+        name="ingredients"
+        rows="4"
+        required
+        placeholder="Um ingrediente por linha"
+        [(ngModel)]="form.ingredients"
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Modo de Preparo</mat-label>
+      <textarea
+        matInput
+        name="instructions"
+        rows="4"
+        required
+        placeholder="Um passo por linha"
+        [(ngModel)]="form.instructions"
+      ></textarea>
+    </mat-form-field>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Tempo de Preparo (min)</mat-label>
+        <input
+          matInput
+          type="number"
+          name="preparationTime"
+          required
+          min="1"
+          [(ngModel)]="form.preparationTime"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Porções</mat-label>
+        <input
+          matInput
+          type="number"
+          name="servings"
+          required
+          min="1"
+          [(ngModel)]="form.servings"
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Dificuldade</mat-label>
+        <mat-select name="difficulty" required [(ngModel)]="form.difficulty">
+          <mat-option
+            *ngFor="let option of difficultyOptions"
+            [value]="option.value"
+          >
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Categoria</mat-label>
+        <mat-select name="categoryId" required [(ngModel)]="form.categoryId">
+          <mat-option
+            *ngFor="let category of categories"
+            [value]="category.id"
+          >
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-actions">
+      <button mat-stroked-button type="button" (click)="onCancel()">
+        Cancelar
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [disabled]="recipeForm.invalid || saving"
+      >
+        {{ saving ? 'Salvando...' : 'Salvar' }}
+      </button>
+    </div>
+  </form>
+</div>

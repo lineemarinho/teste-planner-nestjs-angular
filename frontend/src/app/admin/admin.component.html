@@ -1,0 +1,17 @@
+<div class="admin-layout">
+  <aside class="admin-sidebar">
+    <h2>RecipeHub Admin</h2>
+    <nav>
+      <a routerLink="/admin/recipes" routerLinkActive="active">Receitas</a>
+      <a routerLink="/admin/categories" routerLinkActive="active"
+        >Categorias</a
+      >
+      <a routerLink="/recipes" target="_blank">Ver site público</a>
+    </nav>
+    <button mat-stroked-button (click)="logout()">Sair</button>
+  </aside>
+
+  <main class="admin-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

@@ -1,0 +1,40 @@
+<div class="recipe-detail-page">
+  <a routerLink="/recipes" class="back-link">&larr; Voltar para receitas</a>
+
+  <ng-container *ngIf="!loading && recipe; else loadingTpl">
+    <header class="detail-header">
+      <h1>{{ recipe.title }}</h1>
+      <p class="description">{{ recipe.description }}</p>
+
+      <div class="badges">
+        <span class="category-chip">{{ recipe.category?.name }}</span>
+        <app-difficulty-badge
+          [difficulty]="recipe.difficulty"
+        ></app-difficulty-badge>
+      </div>
+
+      <div class="info-row">
+        <span>⏱ {{ recipe.preparationTime }} minutos</span>
+        <span>🍽 {{ recipe.servings }} porções</span>
+      </div>
+    </header>
+
+    <section class="ingredients">
+      <h2>Ingredientes</h2>
+      <ul>
+        <li *ngFor="let ingredient of ingredientsList">{{ ingredient }}</li>
+      </ul>
+    </section>
+
+    <section class="instructions">
+      <h2>Modo de Preparo</h2>
+      <ol>
+        <li *ngFor="let step of instructionsSteps">{{ step }}</li>
+      </ol>
+    </section>
+  </ng-container>
+
+  <ng-template #loadingTpl>
+    <p class="loading-state">Carregando receita...</p>
+  </ng-template>
+</div>

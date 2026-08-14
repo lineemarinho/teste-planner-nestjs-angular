@@ -1,0 +1,61 @@
+<div class="recipes-page">
+  <header class="recipes-header">
+    <h1>RecipeHub</h1>
+    <a routerLink="/login" class="login-link">Área administrativa</a>
+  </header>
+
+  <div class="filters">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Buscar por título</mat-label>
+      <input
+        matInput
+        [(ngModel)]="search"
+        (ngModelChange)="onSearchChange()"
+        placeholder="Ex: Brigadeiro"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="category-field">
+      <mat-label>Categoria</mat-label>
+      <mat-select
+        [(ngModel)]="categoryId"
+        (selectionChange)="onCategoryChange()"
+      >
+        <mat-option [value]="null">Todas</mat-option>
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="recipes-grid" *ngIf="!loading; else loadingTpl">
+    <mat-card
+      *ngFor="let recipe of recipes"
+      class="recipe-card"
+      (click)="openRecipe(recipe)"
+    >
+      <mat-card-header>
+        <mat-card-title>{{ recipe.title }}</mat-card-title>
+        <mat-card-subtitle>{{ recipe.category?.name }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="description">{{ recipe.description | truncate: 90 }}</p>
+        <div class="meta">
+          <span>⏱ {{ recipe.preparationTime }} min</span>
+          <app-difficulty-badge
+            [difficulty]="recipe.difficulty"
+          ></app-difficulty-badge>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <p *ngIf="recipes.length === 0" class="empty-state">
+      Nenhuma receita encontrada.
+    </p>
+  </div>
+
+  <ng-template #loadingTpl>
+    <p class="loading-state">Carregando receitas...</p>
+  </ng-template>
+</div>

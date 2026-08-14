@@ -1,0 +1,40 @@
+<div class="category-edit-page">
+  <h1>{{ isEditMode ? 'Editar Categoria' : 'Nova Categoria' }}</h1>
+
+  <form (ngSubmit)="onSubmit()" #categoryForm="ngForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input
+        matInput
+        name="name"
+        required
+        appAutofocus
+        [(ngModel)]="form.name"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descrição (opcional)</mat-label>
+      <textarea
+        matInput
+        name="description"
+        rows="3"
+        [(ngModel)]="form.description"
+      ></textarea>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button mat-stroked-button type="button" (click)="onCancel()">
+        Cancelar
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [disabled]="categoryForm.invalid || saving"
+      >
+        {{ saving ? 'Salvando...' : 'Salvar' }}
+      </button>
+    </div>
+  </form>
+</div>
