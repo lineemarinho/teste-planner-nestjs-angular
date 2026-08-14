@@ -16,6 +16,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Public } from '../shared/decorators';
 import {
   CreateRecipeDto,
+  PaginatedResult,
   Recipe,
   recipeImageUploadOptions,
   RecipesFilterDto,
@@ -29,7 +30,9 @@ export class RecipesController {
 
   @Public()
   @Get()
-  findAll(@Query() filter: RecipesFilterDto): Promise<Recipe[]> {
+  findAll(
+    @Query() filter: RecipesFilterDto,
+  ): Promise<PaginatedResult<Recipe>> {
     return this.recipesService.findAll(filter);
   }
 

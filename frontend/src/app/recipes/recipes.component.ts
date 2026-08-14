@@ -5,6 +5,8 @@ import { resolveImageUrl } from '../shared/constants';
 import { Category, Recipe } from '../shared/models';
 import { CategoriesService, RecipesService } from '../shared/services';
 
+const PAGE_SIZE = 12;
+
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
@@ -17,6 +19,10 @@ export class RecipesComponent implements OnInit {
   search = '';
   categoryId: number | null = null;
   loading = false;
+
+  page = 1;
+  total = 0;
+  totalPages = 1;
 
   private readonly searchChanged = new Subject<string>();
 
@@ -33,7 +39,10 @@ export class RecipesComponent implements OnInit {
 
     this.searchChanged
       .pipe(debounceTime(300), distinctUntilChanged())
-      .subscribe(() => this.loadRecipes());
+      .subscribe(() => {
+        this.page = 1;
+        this.loadRecipes();
+      });
 
     this.loadRecipes();
   }
@@ -43,6 +52,20 @@ export class RecipesComponent implements OnInit {
   }
 
   onCategoryChange(): void {
+    this.page = 1;
+    this.loadRecipes();
+  }
+
+  get pagesArray(): number[] {
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+
+  goToPage(page: number): void {
+    if (page < 1 || page > this.totalPages || page === this.page) {
+      return;
+    }
+
+    this.page = page;
     this.loadRecipes();
   }
 
@@ -60,9 +83,13 @@ export class RecipesComponent implements OnInit {
       .findAll({
         search: this.search || undefined,
         categoryId: this.categoryId ?? undefined,
+        page: this.page,
+        limit: PAGE_SIZE,
       })
-      .subscribe((recipes) => {
-        this.recipes = recipes;
+      .subscribe(({ data, total, totalPages }) => {
+        this.recipes = data;
+        this.total = total;
+        this.totalPages = totalPages;
         this.loading = false;
       });
   }

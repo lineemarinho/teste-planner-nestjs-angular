@@ -3,3 +3,4 @@ export * from './recipes.dto';
 export * from './recipes-filter.dto';
 export * from './recipes.service';
 export * from './recipe-image-upload.config';
+export * from './paginated-result.interface';

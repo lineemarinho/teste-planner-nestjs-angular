@@ -11,4 +11,16 @@ export class RecipesFilterDto {
   @IsInt()
   @IsPositive()
   categoryId?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @IsPositive()
+  page?: number;
+
+  @IsOptional()
+  @Type(() => Number)
+  @IsInt()
+  @IsPositive()
+  limit?: number;
 }

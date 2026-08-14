@@ -39,8 +39,8 @@ export class RecipeListComponent implements OnInit {
   }
 
   private loadRecipes(): void {
-    this.recipesService.findAll().subscribe((recipes) => {
-      this.recipes = recipes;
+    this.recipesService.findAll({ limit: 200 }).subscribe(({ data }) => {
+      this.recipes = data;
     });
   }
 }

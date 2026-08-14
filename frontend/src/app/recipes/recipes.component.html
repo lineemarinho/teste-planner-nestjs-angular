@@ -46,9 +46,7 @@
 <div class="recipes-page">
   <div class="results-header">
     <h2>Todas as receitas</h2>
-    <span class="results-count" *ngIf="!loading"
-      >{{ recipes.length }} resultado(s)</span
-    >
+    <span class="results-count" *ngIf="!loading">{{ total }} resultado(s)</span>
   </div>
 
   <div class="recipes-grid" *ngIf="!loading; else loadingTpl">
@@ -92,6 +90,36 @@
       Nenhuma receita encontrada.
     </p>
   </div>
+
+  <nav class="pagination" *ngIf="!loading && totalPages > 1">
+    <button
+      type="button"
+      class="page-nav"
+      [disabled]="page === 1"
+      (click)="goToPage(page - 1)"
+    >
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+
+    <button
+      *ngFor="let p of pagesArray"
+      type="button"
+      class="page-number"
+      [class.active]="page === p"
+      (click)="goToPage(p)"
+    >
+      {{ p }}
+    </button>
+
+    <button
+      type="button"
+      class="page-nav"
+      [disabled]="page === totalPages"
+      (click)="goToPage(page + 1)"
+    >
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </nav>
 
   <ng-template #loadingTpl>
     <p class="loading-state">Carregando receitas...</p>
