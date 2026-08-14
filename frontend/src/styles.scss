@@ -5,16 +5,34 @@
 // custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
+:root {
+  // RecipeHub brand tokens — Coral & Grafite.
+  --rh-coral: #e8604c;
+  --rh-coral-dark: #c9432f;
+  --rh-coral-light: #fbe4de;
+  --rh-grafite: #2b2b2b;
+  --rh-grafite-soft: #5a5a5a;
+  --rh-bg: #fafafa;
+  --rh-surface: #ffffff;
+  --rh-border: #ececec;
+  --rh-font-display: 'Poppins', 'Roboto', sans-serif;
+}
+
 html {
   height: 100%;
   @include mat.theme(
     (
       color: (
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
+        primary: mat.$orange-palette,
+        tertiary: mat.$red-palette,
       ),
       typography: Roboto,
       density: 0,
+    ),
+    (
+      primary: #e8604c,
+      primary-fixed: #fbe4de,
+      on-primary: #ffffff,
     )
   );
 }
@@ -28,12 +46,20 @@ body {
   // Set a default background, font and text colors for the application using
   // Angular Material's system-level CSS variables. Learn more about these
   // variables at https://material.angular.dev/guide/system-variables
-  background-color: var(--mat-sys-surface);
+  background-color: var(--rh-bg);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
 
   // Reset the user agent margin.
   margin: 0;
   height: 100%;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--rh-font-display);
+  font-weight: 700;
+  color: var(--rh-grafite);
 }
 /* You can add global styles to this file, and also import other style files */

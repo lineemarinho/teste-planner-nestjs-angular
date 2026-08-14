@@ -1,0 +1,49 @@
+.public-header {
+  background: var(--rh-surface);
+  border-bottom: 1px solid var(--rh-border);
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  background: var(--rh-coral);
+  font-size: 1.1rem;
+}
+
+.brand-name {
+  font-family: var(--rh-font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--rh-grafite);
+}
+
+.admin-link {
+  color: var(--rh-grafite-soft);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+
+  &:hover {
+    color: var(--rh-coral);
+  }
+}

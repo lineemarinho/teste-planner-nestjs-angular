@@ -1,3 +1,5 @@
+<app-public-header></app-public-header>
+
 <div class="recipe-detail-page">
   <a routerLink="/recipes" class="back-link">&larr; Voltar para receitas</a>
 
@@ -26,19 +28,21 @@
       </div>
     </header>
 
-    <section class="ingredients">
-      <h2>Ingredientes</h2>
-      <ul>
-        <li *ngFor="let ingredient of ingredientsList">{{ ingredient }}</li>
-      </ul>
-    </section>
+    <div class="detail-body">
+      <section class="ingredients">
+        <h2>Ingredientes</h2>
+        <ul>
+          <li *ngFor="let ingredient of ingredientsList">{{ ingredient }}</li>
+        </ul>
+      </section>
 
-    <section class="instructions">
-      <h2>Modo de Preparo</h2>
-      <ol>
-        <li *ngFor="let step of instructionsSteps">{{ step }}</li>
-      </ol>
-    </section>
+      <section class="instructions">
+        <h2>Modo de Preparo</h2>
+        <ol>
+          <li *ngFor="let step of instructionsSteps">{{ step }}</li>
+        </ol>
+      </section>
+    </div>
   </ng-container>
 
   <ng-template #loadingTpl>

@@ -6,14 +6,16 @@
 .admin-sidebar {
   width: 220px;
   flex-shrink: 0;
-  background: #1f2933;
+  background: var(--rh-grafite);
   color: #fff;
   padding: 1.5rem 1.25rem;
   display: flex;
   flex-direction: column;
 
   h2 {
+    font-family: var(--rh-font-display);
     font-size: 1.1rem;
+    color: #fff;
     margin-bottom: 1.5rem;
   }
 
@@ -24,14 +26,18 @@
     margin-bottom: auto;
 
     a {
-      color: #cbd2d9;
+      color: #cbcbcb;
       text-decoration: none;
       padding: 0.5rem 0.75rem;
       border-radius: 6px;
 
-      &:hover,
+      &:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+      }
+
       &.active {
-        background: rgba(255, 255, 255, 0.1);
+        background: var(--rh-coral);
         color: #fff;
       }
     }
@@ -46,5 +52,5 @@
 .admin-content {
   flex: 1;
   padding: 2rem;
-  background: #f5f6f8;
+  background: var(--rh-bg);
 }

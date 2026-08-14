@@ -8,6 +8,9 @@ dist/
 # uploads
 backend/uploads/
 
+# superpowers brainstorming companion
+.superpowers/
+
 # env
 .env
 

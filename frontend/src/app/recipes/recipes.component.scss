@@ -4,36 +4,48 @@
   padding: 2rem 1.5rem;
 }
 
-.recipes-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-
-  h1 {
-    margin: 0;
-  }
-
-  .login-link {
-    text-decoration: none;
-    font-weight: 500;
-  }
-}
-
 .filters {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 
   .search-field {
-    flex: 2;
+    flex: 1;
     min-width: 240px;
   }
+}
 
-  .category-field {
-    flex: 1;
-    min-width: 200px;
+.category-pills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+
+.pill {
+  border: 1px solid var(--rh-border);
+  background: var(--rh-surface);
+  color: var(--rh-grafite-soft);
+  border-radius: 999px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+
+  &:hover {
+    border-color: var(--rh-coral);
+    color: var(--rh-coral);
+  }
+
+  &.active {
+    background: var(--rh-coral);
+    border-color: var(--rh-coral);
+    color: #fff;
   }
 }
 
@@ -45,10 +57,15 @@
 
 .recipe-card {
   cursor: pointer;
-  transition: box-shadow 0.2s ease;
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 
   &:hover {
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 8px 24px rgba(43, 43, 43, 0.14);
+    transform: translateY(-2px);
   }
 
   .recipe-image {
@@ -61,12 +78,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #eef1f4;
+    background: var(--rh-coral-light);
     font-size: 2.5rem;
   }
 
+  mat-card-title {
+    font-family: var(--rh-font-display);
+    font-weight: 700;
+  }
+
   .description {
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--rh-grafite-soft);
     min-height: 2.5rem;
   }
 
@@ -81,7 +103,7 @@
 .empty-state,
 .loading-state {
   text-align: center;
-  color: rgba(0, 0, 0, 0.5);
+  color: var(--rh-grafite-soft);
   grid-column: 1 / -1;
   padding: 2rem 0;
 }

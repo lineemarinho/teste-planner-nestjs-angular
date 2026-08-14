@@ -4,12 +4,18 @@
   justify-content: center;
   min-height: 100vh;
   padding: 1.5rem;
-  background: #f5f6f8;
+  background: var(--rh-grafite);
 }
 
 .login-card {
   width: 100%;
   max-width: 380px;
+  border-radius: 12px;
+
+  mat-card-title {
+    font-family: var(--rh-font-display);
+    font-weight: 700;
+  }
 }
 
 .full-width {

@@ -1,9 +1,6 @@
-<div class="recipes-page">
-  <header class="recipes-header">
-    <h1>RecipeHub</h1>
-    <a routerLink="/login" class="login-link">Área administrativa</a>
-  </header>
+<app-public-header></app-public-header>
 
+<div class="recipes-page">
   <div class="filters">
     <mat-form-field appearance="outline" class="search-field">
       <mat-label>Buscar por título</mat-label>
@@ -14,19 +11,26 @@
         placeholder="Ex: Brigadeiro"
       />
     </mat-form-field>
+  </div>
 
-    <mat-form-field appearance="outline" class="category-field">
-      <mat-label>Categoria</mat-label>
-      <mat-select
-        [(ngModel)]="categoryId"
-        (selectionChange)="onCategoryChange()"
-      >
-        <mat-option [value]="null">Todas</mat-option>
-        <mat-option *ngFor="let category of categories" [value]="category.id">
-          {{ category.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+  <div class="category-pills">
+    <button
+      type="button"
+      class="pill"
+      [class.active]="categoryId === null"
+      (click)="onCategorySelected(null)"
+    >
+      Todas
+    </button>
+    <button
+      *ngFor="let category of categories"
+      type="button"
+      class="pill"
+      [class.active]="categoryId === category.id"
+      (click)="onCategorySelected(category.id)"
+    >
+      {{ category.name }}
+    </button>
   </div>
 
   <div class="recipes-grid" *ngIf="!loading; else loadingTpl">
