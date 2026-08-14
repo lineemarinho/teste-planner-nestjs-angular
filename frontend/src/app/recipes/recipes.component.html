@@ -33,7 +33,7 @@
           [(ngModel)]="categoryId"
           (selectionChange)="onCategoryChange()"
         >
-          <mat-option [value]="null">Todas as categorias</mat-option>
+          <mat-option [value]="0">Todas as categorias</mat-option>
           <mat-option *ngFor="let category of categories" [value]="category.id">
             {{ category.name }}
           </mat-option>

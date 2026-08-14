@@ -17,7 +17,7 @@ export class RecipesComponent implements OnInit {
   recipes: Recipe[] = [];
   categories: Category[] = [];
   search = '';
-  categoryId: number | null = null;
+  categoryId = 0;
   loading = false;
 
   page = 1;
@@ -82,7 +82,7 @@ export class RecipesComponent implements OnInit {
     this.recipesService
       .findAll({
         search: this.search || undefined,
-        categoryId: this.categoryId ?? undefined,
+        categoryId: this.categoryId || undefined,
         page: this.page,
         limit: PAGE_SIZE,
       })
