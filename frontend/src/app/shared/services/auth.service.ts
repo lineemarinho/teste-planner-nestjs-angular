@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { API_ENDPOINTS, AUTH_TOKEN_KEY } from '../constants';
+import { API_ENDPOINTS, AUTH_TOKEN_KEY, SKIP_ERROR_TOAST } from '../constants';
 
 export interface LoginPayload {
   email: string;
@@ -18,7 +18,9 @@ export class AuthService {
 
   login(payload: LoginPayload): Observable<LoginResponse> {
     return this.http
-      .post<LoginResponse>(API_ENDPOINTS.login, payload)
+      .post<LoginResponse>(API_ENDPOINTS.login, payload, {
+        context: new HttpContext().set(SKIP_ERROR_TOAST, true),
+      })
       .pipe(tap((response) => this.setToken(response.accessToken)));
   }
 

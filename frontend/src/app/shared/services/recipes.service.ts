@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpContext } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { API_ENDPOINTS } from '../constants';
+import { API_ENDPOINTS, SKIP_ERROR_TOAST } from '../constants';
 import { PaginatedResult, Recipe, RecipeInput } from '../models';
 
 export interface RecipesFilter {
@@ -62,6 +62,7 @@ export class RecipesService {
     return this.http.post<{ imageUrl: string }>(
       `${API_ENDPOINTS.recipes}/upload-image`,
       formData,
+      { context: new HttpContext().set(SKIP_ERROR_TOAST, true) },
     );
   }
 }
