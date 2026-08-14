@@ -12,25 +12,28 @@
     />
 
     <header class="detail-header">
+      <span class="eyebrow">{{ recipe.category?.name }}</span>
       <h1>{{ recipe.title }}</h1>
       <p class="description">{{ recipe.description }}</p>
 
-      <div class="badges">
-        <span class="category-chip">{{ recipe.category?.name }}</span>
+      <div class="meta-pills">
+        <span class="meta-pill"
+          ><mat-icon>schedule</mat-icon>{{ recipe.preparationTime }} min</span
+        >
+        <span class="meta-pill"
+          ><mat-icon>group</mat-icon>{{ recipe.servings }} porções</span
+        >
         <app-difficulty-badge
           [difficulty]="recipe.difficulty"
         ></app-difficulty-badge>
       </div>
-
-      <div class="info-row">
-        <span>⏱ {{ recipe.preparationTime }} minutos</span>
-        <span>🍽 {{ recipe.servings }} porções</span>
-      </div>
     </header>
+
+    <div class="detail-divider"></div>
 
     <div class="detail-body">
       <section class="ingredients">
-        <h2>Ingredientes</h2>
+        <h2><mat-icon>restaurant</mat-icon> Ingredientes</h2>
         <ul>
           <li *ngFor="let ingredient of ingredientsList">{{ ingredient }}</li>
         </ul>
@@ -39,7 +42,10 @@
       <section class="instructions">
         <h2>Modo de Preparo</h2>
         <ol>
-          <li *ngFor="let step of instructionsSteps">{{ step }}</li>
+          <li *ngFor="let step of instructionsSteps; let i = index">
+            <span class="step-number">{{ i + 1 }}</span>
+            <span class="step-text">{{ step }}</span>
+          </li>
         </ol>
       </section>
     </div>

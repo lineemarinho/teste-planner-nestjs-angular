@@ -16,6 +16,7 @@
   --rh-surface: #ffffff;
   --rh-border: #ececec;
   --rh-font-display: 'Poppins', 'Roboto', sans-serif;
+  --rh-font-serif: 'Fraunces', 'Georgia', serif;
 }
 
 html {
@@ -58,8 +59,8 @@ body {
 h1,
 h2,
 h3 {
-  font-family: var(--rh-font-display);
-  font-weight: 700;
+  font-family: var(--rh-font-serif);
+  font-weight: 600;
   color: var(--rh-grafite);
 }
 /* You can add global styles to this file, and also import other style files */

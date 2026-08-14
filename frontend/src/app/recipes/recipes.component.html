@@ -1,40 +1,50 @@
 <app-public-header></app-public-header>
 
-<div class="recipes-page">
-  <div class="filters">
-    <mat-form-field appearance="outline" class="search-field">
-      <mat-label>Buscar por título</mat-label>
-      <input
-        matInput
-        [(ngModel)]="search"
-        (ngModelChange)="onSearchChange()"
-        placeholder="Ex: Brigadeiro"
-      />
-    </mat-form-field>
-  </div>
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Cozinha de verdade</span>
+    <h1>Receitas testadas, do café da manhã ao último prato da noite.</h1>
+    <p class="hero-subtitle">
+      Busque pelo título ou filtre por categoria para encontrar o que cabe no
+      seu tempo.
+    </p>
 
-  <div class="category-pills">
-    <button
-      type="button"
-      class="pill"
-      [class.active]="categoryId === null"
-      (click)="onCategorySelected(null)"
+    <div class="hero-filters">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-icon matPrefix>search</mat-icon>
+        <input
+          matInput
+          [(ngModel)]="search"
+          (ngModelChange)="onSearchChange()"
+          placeholder="Buscar receita..."
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="category-field">
+        <mat-select
+          [(ngModel)]="categoryId"
+          (selectionChange)="onCategoryChange()"
+        >
+          <mat-option [value]="null">Todas as categorias</mat-option>
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</section>
+
+<div class="recipes-page">
+  <div class="results-header">
+    <h2>Todas as receitas</h2>
+    <span class="results-count" *ngIf="!loading"
+      >{{ recipes.length }} resultado(s)</span
     >
-      Todas
-    </button>
-    <button
-      *ngFor="let category of categories"
-      type="button"
-      class="pill"
-      [class.active]="categoryId === category.id"
-      (click)="onCategorySelected(category.id)"
-    >
-      {{ category.name }}
-    </button>
   </div>
 
   <div class="recipes-grid" *ngIf="!loading; else loadingTpl">
-    <mat-card
+    <article
       *ngFor="let recipe of recipes"
       class="recipe-card"
       (click)="openRecipe(recipe)"
@@ -43,27 +53,32 @@
         *ngIf="resolveImageUrl(recipe.imageUrl) as imageUrl; else imagePlaceholder"
         [src]="imageUrl"
         alt="{{ recipe.title }}"
-        mat-card-image
         class="recipe-image"
       />
       <ng-template #imagePlaceholder>
         <div class="recipe-image recipe-image-placeholder">🍽</div>
       </ng-template>
 
-      <mat-card-header>
-        <mat-card-title>{{ recipe.title }}</mat-card-title>
-        <mat-card-subtitle>{{ recipe.category?.name }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <p class="description">{{ recipe.description | truncate: 90 }}</p>
-        <div class="meta">
-          <span>⏱ {{ recipe.preparationTime }} min</span>
+      <div class="card-body">
+        <span class="eyebrow">{{ recipe.category?.name }}</span>
+        <h3 class="card-title">{{ recipe.title }}</h3>
+        <p class="card-description">{{ recipe.description | truncate: 90 }}</p>
+
+        <div class="card-divider"></div>
+
+        <div class="card-meta">
+          <span class="meta-item"
+            ><mat-icon>schedule</mat-icon>{{ recipe.preparationTime }} min</span
+          >
+          <span class="meta-item"
+            ><mat-icon>group</mat-icon>{{ recipe.servings }}</span
+          >
           <app-difficulty-badge
             [difficulty]="recipe.difficulty"
           ></app-difficulty-badge>
         </div>
-      </mat-card-content>
-    </mat-card>
+      </div>
+    </article>
 
     <p *ngIf="recipes.length === 0" class="empty-state">
       Nenhuma receita encontrada.

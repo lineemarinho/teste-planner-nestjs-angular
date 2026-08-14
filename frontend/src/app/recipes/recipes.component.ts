@@ -46,11 +46,6 @@ export class RecipesComponent implements OnInit {
     this.loadRecipes();
   }
 
-  onCategorySelected(categoryId: number | null): void {
-    this.categoryId = categoryId;
-    this.onCategoryChange();
-  }
-
   openRecipe(recipe: Recipe): void {
     this.router.navigate(['/recipes', recipe.id]);
   }

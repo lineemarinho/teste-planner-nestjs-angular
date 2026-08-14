@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { DifficultyBadgeModule } from '../shared/components/difficulty-badge';
 import { PublicHeaderModule } from '../shared/components/public-header';
 import { TruncateModule } from '../shared/pipes/truncate';
@@ -17,9 +18,10 @@ import { RecipesComponent } from './recipes.component';
     CommonModule,
     FormsModule,
     RouterModule,
-    MatCardModule,
     MatFormFieldModule,
+    MatIconModule,
     MatInputModule,
+    MatSelectModule,
     DifficultyBadgeModule,
     PublicHeaderModule,
     TruncateModule,
