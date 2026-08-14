@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth';
 import { CategoriesModule } from './categories';
 import { RecipesModule } from './recipes';
 import { SeedModule } from './database';
+import { AllExceptionsFilter } from './shared/filters';
 import { JwtAuthGuard } from './shared/guards';
 import { LoggingInterceptor } from './shared/interceptors';
 
@@ -34,6 +35,7 @@ import { LoggingInterceptor } from './shared/interceptors';
   providers: [
     { provide: APP_GUARD, useClass: JwtAuthGuard },
     { provide: APP_INTERCEPTOR, useClass: LoggingInterceptor },
+    { provide: APP_FILTER, useClass: AllExceptionsFilter },
   ],
 })
 export class AppModule {}
