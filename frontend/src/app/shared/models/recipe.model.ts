@@ -15,6 +15,7 @@ export interface Recipe {
   preparationTime: number;
   servings: number;
   difficulty: RecipeDifficulty;
+  imageUrl?: string | null;
   categoryId: number;
   category?: Category;
   createdAt: string;

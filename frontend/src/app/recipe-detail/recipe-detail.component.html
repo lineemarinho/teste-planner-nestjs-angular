@@ -2,6 +2,13 @@
   <a routerLink="/recipes" class="back-link">&larr; Voltar para receitas</a>
 
   <ng-container *ngIf="!loading && recipe; else loadingTpl">
+    <img
+      *ngIf="imageUrl"
+      [src]="imageUrl"
+      alt="{{ recipe.title }}"
+      class="detail-image"
+    />
+
     <header class="detail-header">
       <h1>{{ recipe.title }}</h1>
       <p class="description">{{ recipe.description }}</p>

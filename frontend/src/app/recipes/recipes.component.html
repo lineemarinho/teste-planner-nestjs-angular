@@ -35,6 +35,17 @@
       class="recipe-card"
       (click)="openRecipe(recipe)"
     >
+      <img
+        *ngIf="resolveImageUrl(recipe.imageUrl) as imageUrl; else imagePlaceholder"
+        [src]="imageUrl"
+        alt="{{ recipe.title }}"
+        mat-card-image
+        class="recipe-image"
+      />
+      <ng-template #imagePlaceholder>
+        <div class="recipe-image recipe-image-placeholder">🍽</div>
+      </ng-template>
+
       <mat-card-header>
         <mat-card-title>{{ recipe.title }}</mat-card-title>
         <mat-card-subtitle>{{ recipe.category?.name }}</mat-card-subtitle>

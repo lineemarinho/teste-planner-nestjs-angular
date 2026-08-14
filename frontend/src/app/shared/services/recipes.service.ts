@@ -42,4 +42,14 @@ export class RecipesService {
   remove(id: number): Observable<void> {
     return this.http.delete<void>(`${API_ENDPOINTS.recipes}/${id}`);
   }
+
+  uploadImage(file: File): Observable<{ imageUrl: string }> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post<{ imageUrl: string }>(
+      `${API_ENDPOINTS.recipes}/upload-image`,
+      formData,
+    );
+  }
 }

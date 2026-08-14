@@ -10,6 +10,14 @@
   text-decoration: none;
 }
 
+.detail-image {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+}
+
 .detail-header {
   margin-bottom: 2rem;
 

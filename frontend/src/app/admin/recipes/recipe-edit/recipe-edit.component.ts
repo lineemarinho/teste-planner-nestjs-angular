@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DIFFICULTY_OPTIONS } from '../../../shared/constants';
+import { DIFFICULTY_OPTIONS, resolveImageUrl } from '../../../shared/constants';
 import { Category, RecipeDifficulty, RecipeInput } from '../../../shared/models';
 import { CategoriesService, RecipesService } from '../../../shared/services';
 
@@ -14,6 +14,8 @@ export class RecipeEditComponent implements OnInit {
   isEditMode = false;
   recipeId: number | null = null;
   saving = false;
+  uploadingImage = false;
+  uploadError: string | null = null;
   categories: Category[] = [];
   difficultyOptions = DIFFICULTY_OPTIONS;
 
@@ -25,8 +27,13 @@ export class RecipeEditComponent implements OnInit {
     preparationTime: 30,
     servings: 4,
     difficulty: RecipeDifficulty.EASY,
+    imageUrl: '',
     categoryId: 0,
   };
+
+  get imagePreviewUrl(): string | null {
+    return resolveImageUrl(this.form.imageUrl);
+  }
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -55,10 +62,36 @@ export class RecipeEditComponent implements OnInit {
           preparationTime: recipe.preparationTime,
           servings: recipe.servings,
           difficulty: recipe.difficulty,
+          imageUrl: recipe.imageUrl ?? '',
           categoryId: recipe.categoryId,
         };
       });
     }
+  }
+
+  onImageSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    this.uploadError = null;
+    this.uploadingImage = true;
+
+    this.recipesService.uploadImage(file).subscribe({
+      next: ({ imageUrl }) => {
+        this.form.imageUrl = imageUrl;
+        this.uploadingImage = false;
+      },
+      error: () => {
+        this.uploadError = 'Não foi possível enviar a imagem. Tente novamente.';
+        this.uploadingImage = false;
+      },
+    });
+
+    input.value = '';
   }
 
   onSubmit(): void {

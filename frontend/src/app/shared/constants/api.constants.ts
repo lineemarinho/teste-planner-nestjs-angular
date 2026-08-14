@@ -9,3 +9,7 @@ export const API_ENDPOINTS = {
 };
 
 export const AUTH_TOKEN_KEY = 'recipehub_token';
+
+export function resolveImageUrl(imageUrl?: string | null): string | null {
+  return imageUrl ? `${API_BASE_URL}${imageUrl}` : null;
+}

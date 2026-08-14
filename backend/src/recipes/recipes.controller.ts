@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Delete,
@@ -8,11 +9,15 @@ import {
   Post,
   Put,
   Query,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { Public } from '../shared/decorators';
 import {
   CreateRecipeDto,
   Recipe,
+  recipeImageUploadOptions,
   RecipesFilterDto,
   RecipesService,
   UpdateRecipeDto,
@@ -37,6 +42,16 @@ export class RecipesController {
   @Post()
   create(@Body() dto: CreateRecipeDto): Promise<Recipe> {
     return this.recipesService.create(dto);
+  }
+
+  @Post('upload-image')
+  @UseInterceptors(FileInterceptor('file', recipeImageUploadOptions))
+  uploadImage(@UploadedFile() file: Express.Multer.File): { imageUrl: string } {
+    if (!file) {
+      throw new BadRequestException('Nenhum arquivo enviado.');
+    }
+
+    return { imageUrl: `/uploads/recipes/${file.filename}` };
   }
 
   @Put(':id')

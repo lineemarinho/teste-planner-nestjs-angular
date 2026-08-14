@@ -40,6 +40,9 @@ export class Recipe {
   @Column({ type: 'enum', enum: RecipeDifficulty })
   difficulty: RecipeDifficulty;
 
+  @Column({ type: 'varchar', nullable: true })
+  imageUrl: string | null;
+
   @Column()
   categoryId: number;
 

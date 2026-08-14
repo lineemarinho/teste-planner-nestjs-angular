@@ -85,7 +85,8 @@ export class SeedService implements OnApplicationBootstrap {
         {
           title: 'Salada Caesar',
           description: 'Salada clássica com molho especial',
-          ingredients: 'Alface romana, croutons, parmesão, molho caesar, frango grelhado',
+          ingredients:
+            'Alface romana, croutons, parmesão, molho caesar, frango grelhado',
           instructions:
             'Rasgue a alface, adicione o frango grelhado em tiras, croutons, parmesão e o molho. Misture bem antes de servir.',
           preparationTime: 25,
@@ -96,7 +97,8 @@ export class SeedService implements OnApplicationBootstrap {
         {
           title: 'Salada de Grão-de-Bico',
           description: 'Salada nutritiva e saborosa',
-          ingredients: 'Grão-de-bico cozido, tomate, cebola roxa, pepino, azeite, limão',
+          ingredients:
+            'Grão-de-bico cozido, tomate, cebola roxa, pepino, azeite, limão',
           instructions:
             'Misture todos os ingredientes em uma tigela e tempere com azeite, limão, sal e pimenta a gosto.',
           preparationTime: 15,
@@ -118,7 +120,8 @@ export class SeedService implements OnApplicationBootstrap {
         {
           title: 'Strogonoff de Carne',
           description: 'Prato cremoso e reconfortante',
-          ingredients: 'Carne em cubos, creme de leite, ketchup, mostarda, champignon, cebola',
+          ingredients:
+            'Carne em cubos, creme de leite, ketchup, mostarda, champignon, cebola',
           instructions:
             'Refogue a cebola e a carne, adicione champignon, ketchup e mostarda. Finalize com creme de leite e sirva com arroz e batata palha.',
           preparationTime: 40,

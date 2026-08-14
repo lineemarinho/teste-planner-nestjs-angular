@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { resolveImageUrl } from '../shared/constants';
 import { Recipe } from '../shared/models';
 import { RecipesService } from '../shared/services';
 
@@ -25,6 +26,10 @@ export class RecipeDetailComponent implements OnInit {
       this.recipe = recipe;
       this.loading = false;
     });
+  }
+
+  get imageUrl(): string | null {
+    return resolveImageUrl(this.recipe?.imageUrl);
   }
 
   get ingredientsList(): string[] {

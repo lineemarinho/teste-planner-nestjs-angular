@@ -36,6 +36,10 @@ export class CreateRecipeDto {
   @IsEnum(RecipeDifficulty)
   difficulty: RecipeDifficulty;
 
+  @IsOptional()
+  @IsString()
+  imageUrl?: string;
+
   @IsInt()
   @IsPositive()
   categoryId: number;
@@ -71,6 +75,10 @@ export class UpdateRecipeDto {
   @IsOptional()
   @IsEnum(RecipeDifficulty)
   difficulty?: RecipeDifficulty;
+
+  @IsOptional()
+  @IsString()
+  imageUrl?: string;
 
   @IsOptional()
   @IsInt()

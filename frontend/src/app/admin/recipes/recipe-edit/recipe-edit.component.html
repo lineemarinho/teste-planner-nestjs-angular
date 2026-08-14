@@ -23,6 +23,31 @@
       ></textarea>
     </mat-form-field>
 
+    <div class="image-upload">
+      <img
+        *ngIf="imagePreviewUrl"
+        [src]="imagePreviewUrl"
+        alt="Prévia da imagem da receita"
+        class="image-preview"
+      />
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="imageInput.click()"
+        [disabled]="uploadingImage"
+      >
+        {{ uploadingImage ? 'Enviando...' : (imagePreviewUrl ? 'Trocar imagem' : 'Selecionar imagem') }}
+      </button>
+      <input
+        #imageInput
+        type="file"
+        hidden
+        accept="image/jpeg,image/png,image/webp"
+        (change)="onImageSelected($event)"
+      />
+      <p *ngIf="uploadError" class="upload-error">{{ uploadError }}</p>
+    </div>
+
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Ingredientes</mat-label>
       <textarea
