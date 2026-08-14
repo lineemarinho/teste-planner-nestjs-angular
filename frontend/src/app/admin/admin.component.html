@@ -1,15 +1,25 @@
 <div class="admin-layout">
-  <aside class="admin-sidebar">
-    <h2>RecipeHub Admin</h2>
-    <nav>
-      <a routerLink="/admin/recipes" routerLinkActive="active">Receitas</a>
-      <a routerLink="/admin/categories" routerLinkActive="active"
-        >Categorias</a
-      >
-      <a routerLink="/recipes" target="_blank">Ver site público</a>
-    </nav>
-    <button mat-stroked-button (click)="logout()">Sair</button>
-  </aside>
+  <header class="admin-header">
+    <div class="inner">
+      <a routerLink="/admin" class="brand">
+        <span class="brand-mark">🍳</span>
+        <span class="brand-name">RecipeHub</span>
+        <span class="brand-tag">Admin</span>
+      </a>
+
+      <nav class="nav-links">
+        <a routerLink="/admin/recipes" routerLinkActive="active">Receitas</a>
+        <a routerLink="/admin/categories" routerLinkActive="active"
+          >Categorias</a
+        >
+        <a routerLink="/recipes" target="_blank">Ver site público</a>
+      </nav>
+
+      <button class="logout-button" type="button" (click)="logout()">
+        Sair
+      </button>
+    </div>
+  </header>
 
   <main class="admin-content">
     <router-outlet></router-outlet>

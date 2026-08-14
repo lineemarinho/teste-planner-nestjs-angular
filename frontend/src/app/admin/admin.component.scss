@@ -1,56 +1,95 @@
 .admin-layout {
-  display: flex;
   min-height: 100vh;
+  background: var(--rh-bg);
 }
 
-.admin-sidebar {
-  width: 220px;
-  flex-shrink: 0;
-  background: var(--rh-grafite);
-  color: #fff;
-  padding: 1.5rem 1.25rem;
+.admin-header {
+  background: var(--rh-surface);
+  border-bottom: 1px solid var(--rh-border);
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
 
-  h2 {
-    font-family: var(--rh-font-display);
-    font-size: 1.1rem;
-    color: #fff;
-    margin-bottom: 1.5rem;
-  }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
 
-  nav {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: auto;
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  background: var(--rh-coral);
+  font-size: 1.1rem;
+}
 
-    a {
-      color: #cbcbcb;
-      text-decoration: none;
-      padding: 0.5rem 0.75rem;
-      border-radius: 6px;
+.brand-name {
+  font-family: var(--rh-font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--rh-grafite);
+}
 
-      &:hover {
-        background: rgba(255, 255, 255, 0.08);
-        color: #fff;
-      }
+.brand-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--rh-coral-dark);
+  background: var(--rh-coral-light);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
 
-      &.active {
-        background: var(--rh-coral);
-        color: #fff;
-      }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+
+  a {
+    color: var(--rh-grafite-soft);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.92rem;
+
+    &:hover,
+    &.active {
+      color: var(--rh-coral);
     }
   }
+}
 
-  button {
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.3);
+.logout-button {
+  background: none;
+  border: 1px solid var(--rh-border);
+  color: var(--rh-grafite-soft);
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.5rem 1.15rem;
+  border-radius: 999px;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--rh-coral);
+    color: var(--rh-coral);
   }
 }
 
 .admin-content {
-  flex: 1;
-  padding: 2rem;
-  background: var(--rh-bg);
+  padding: 2rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
