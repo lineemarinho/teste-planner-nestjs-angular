@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,7 +15,7 @@ const routes: Routes = [{ path: '', component: RecipeEditComponent }];
   declarations: [RecipeEditComponent],
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,

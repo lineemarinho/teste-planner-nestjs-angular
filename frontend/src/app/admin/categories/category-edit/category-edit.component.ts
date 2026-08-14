@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CategoryInput } from '../../../shared/models';
 import { CategoriesService } from '../../../shared/services';
 
 @Component({
@@ -14,16 +19,22 @@ export class CategoryEditComponent implements OnInit {
   categoryId: number | null = null;
   saving = false;
 
-  form: CategoryInput = {
-    name: '',
-    description: '',
-  };
+  readonly form: FormGroup<{
+    name: FormControl<string>;
+    description: FormControl<string>;
+  }>;
 
   constructor(
+    fb: FormBuilder,
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly categoriesService: CategoriesService,
-  ) {}
+  ) {
+    this.form = fb.nonNullable.group({
+      name: ['', Validators.required],
+      description: [''],
+    });
+  }
 
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
@@ -33,21 +44,27 @@ export class CategoryEditComponent implements OnInit {
       this.categoryId = Number(idParam);
 
       this.categoriesService.findOne(this.categoryId).subscribe((category) => {
-        this.form = {
+        this.form.setValue({
           name: category.name,
           description: category.description ?? '',
-        };
+        });
       });
     }
   }
 
   onSubmit(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     this.saving = true;
+    const value = this.form.getRawValue();
 
     const request =
       this.isEditMode && this.categoryId
-        ? this.categoriesService.update(this.categoryId, this.form)
-        : this.categoriesService.create(this.form);
+        ? this.categoriesService.update(this.categoryId, value)
+        : this.categoriesService.create(value);
 
     request.subscribe({
       next: () => {

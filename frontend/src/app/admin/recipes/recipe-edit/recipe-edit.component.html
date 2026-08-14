@@ -1,25 +1,21 @@
 <div class="recipe-edit-page">
   <h1>{{ isEditMode ? 'Editar Receita' : 'Nova Receita' }}</h1>
 
-  <form (ngSubmit)="onSubmit()" #recipeForm="ngForm">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Título</mat-label>
-      <input
-        matInput
-        name="title"
-        required
-        appAutofocus
-        [(ngModel)]="form.title"
-      />
+      <input matInput formControlName="title" appAutofocus />
+      <mat-error *ngIf="form.controls.title.hasError('required')">
+        Informe o título
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Descrição (opcional)</mat-label>
       <textarea
         matInput
-        name="description"
+        formControlName="description"
         rows="2"
-        [(ngModel)]="form.description"
       ></textarea>
     </mat-form-field>
 
@@ -52,56 +48,50 @@
       <mat-label>Ingredientes</mat-label>
       <textarea
         matInput
-        name="ingredients"
+        formControlName="ingredients"
         rows="4"
-        required
         placeholder="Um ingrediente por linha"
-        [(ngModel)]="form.ingredients"
       ></textarea>
+      <mat-error *ngIf="form.controls.ingredients.hasError('required')">
+        Informe os ingredientes
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Modo de Preparo</mat-label>
       <textarea
         matInput
-        name="instructions"
+        formControlName="instructions"
         rows="4"
-        required
         placeholder="Um passo por linha"
-        [(ngModel)]="form.instructions"
       ></textarea>
+      <mat-error *ngIf="form.controls.instructions.hasError('required')">
+        Informe o modo de preparo
+      </mat-error>
     </mat-form-field>
 
     <div class="form-row">
       <mat-form-field appearance="outline">
         <mat-label>Tempo de Preparo (min)</mat-label>
-        <input
-          matInput
-          type="number"
-          name="preparationTime"
-          required
-          min="1"
-          [(ngModel)]="form.preparationTime"
-        />
+        <input matInput type="number" formControlName="preparationTime" />
+        <mat-error *ngIf="form.controls.preparationTime.invalid">
+          Informe um tempo válido
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Porções</mat-label>
-        <input
-          matInput
-          type="number"
-          name="servings"
-          required
-          min="1"
-          [(ngModel)]="form.servings"
-        />
+        <input matInput type="number" formControlName="servings" />
+        <mat-error *ngIf="form.controls.servings.invalid">
+          Informe um número válido
+        </mat-error>
       </mat-form-field>
     </div>
 
     <div class="form-row">
       <mat-form-field appearance="outline">
         <mat-label>Dificuldade</mat-label>
-        <mat-select name="difficulty" required [(ngModel)]="form.difficulty">
+        <mat-select formControlName="difficulty">
           <mat-option
             *ngFor="let option of difficultyOptions"
             [value]="option.value"
@@ -113,7 +103,7 @@
 
       <mat-form-field appearance="outline">
         <mat-label>Categoria</mat-label>
-        <mat-select name="categoryId" required [(ngModel)]="form.categoryId">
+        <mat-select formControlName="categoryId">
           <mat-option
             *ngFor="let category of categories"
             [value]="category.id"
@@ -121,6 +111,9 @@
             {{ category.name }}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="form.controls.categoryId.invalid">
+          Selecione uma categoria
+        </mat-error>
       </mat-form-field>
     </div>
 
@@ -132,7 +125,7 @@
         mat-flat-button
         color="primary"
         type="submit"
-        [disabled]="recipeForm.invalid || saving"
+        [disabled]="saving"
       >
         {{ saving ? 'Salvando...' : 'Salvar' }}
       </button>

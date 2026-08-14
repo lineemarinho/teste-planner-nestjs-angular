@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DIFFICULTY_OPTIONS, resolveImageUrl } from '../../../shared/constants';
-import { Category, RecipeDifficulty, RecipeInput } from '../../../shared/models';
+import { Category, RecipeDifficulty } from '../../../shared/models';
 import { CategoriesService, RecipesService } from '../../../shared/services';
 
 @Component({
@@ -19,28 +25,41 @@ export class RecipeEditComponent implements OnInit {
   categories: Category[] = [];
   difficultyOptions = DIFFICULTY_OPTIONS;
 
-  form: RecipeInput = {
-    title: '',
-    description: '',
-    ingredients: '',
-    instructions: '',
-    preparationTime: 30,
-    servings: 4,
-    difficulty: RecipeDifficulty.EASY,
-    imageUrl: '',
-    categoryId: 0,
-  };
+  readonly form: FormGroup<{
+    title: FormControl<string>;
+    description: FormControl<string>;
+    ingredients: FormControl<string>;
+    instructions: FormControl<string>;
+    preparationTime: FormControl<number>;
+    servings: FormControl<number>;
+    difficulty: FormControl<RecipeDifficulty>;
+    imageUrl: FormControl<string>;
+    categoryId: FormControl<number>;
+  }>;
 
   get imagePreviewUrl(): string | null {
-    return resolveImageUrl(this.form.imageUrl);
+    return resolveImageUrl(this.form.controls.imageUrl.value);
   }
 
   constructor(
+    fb: FormBuilder,
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly recipesService: RecipesService,
     private readonly categoriesService: CategoriesService,
-  ) {}
+  ) {
+    this.form = fb.nonNullable.group({
+      title: ['', Validators.required],
+      description: [''],
+      ingredients: ['', Validators.required],
+      instructions: ['', Validators.required],
+      preparationTime: [30, [Validators.required, Validators.min(1)]],
+      servings: [4, [Validators.required, Validators.min(1)]],
+      difficulty: [RecipeDifficulty.EASY, Validators.required],
+      imageUrl: [''],
+      categoryId: [0, [Validators.required, Validators.min(1)]],
+    });
+  }
 
   ngOnInit(): void {
     this.categoriesService.findAll().subscribe((categories) => {
@@ -54,7 +73,7 @@ export class RecipeEditComponent implements OnInit {
       this.recipeId = Number(idParam);
 
       this.recipesService.findOne(this.recipeId).subscribe((recipe) => {
-        this.form = {
+        this.form.setValue({
           title: recipe.title,
           description: recipe.description ?? '',
           ingredients: recipe.ingredients,
@@ -64,7 +83,7 @@ export class RecipeEditComponent implements OnInit {
           difficulty: recipe.difficulty,
           imageUrl: recipe.imageUrl ?? '',
           categoryId: recipe.categoryId,
-        };
+        });
       });
     }
   }
@@ -82,7 +101,7 @@ export class RecipeEditComponent implements OnInit {
 
     this.recipesService.uploadImage(file).subscribe({
       next: ({ imageUrl }) => {
-        this.form.imageUrl = imageUrl;
+        this.form.controls.imageUrl.setValue(imageUrl);
         this.uploadingImage = false;
       },
       error: () => {
@@ -95,12 +114,18 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     this.saving = true;
+    const value = this.form.getRawValue();
 
     const request =
       this.isEditMode && this.recipeId
-        ? this.recipesService.update(this.recipeId, this.form)
-        : this.recipesService.create(this.form);
+        ? this.recipesService.update(this.recipeId, value)
+        : this.recipesService.create(value);
 
     request.subscribe({
       next: () => {
