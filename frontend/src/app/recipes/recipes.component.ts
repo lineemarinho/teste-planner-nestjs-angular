@@ -18,7 +18,7 @@ export class RecipesComponent implements OnInit {
   categoryId: number | null = null;
   loading = false;
 
-  private readonly searchChanged = new Subject<void>();
+  private readonly searchChanged = new Subject<string>();
 
   constructor(
     private readonly recipesService: RecipesService,
@@ -39,7 +39,7 @@ export class RecipesComponent implements OnInit {
   }
 
   onSearchChange(): void {
-    this.searchChanged.next();
+    this.searchChanged.next(this.search);
   }
 
   onCategoryChange(): void {
