@@ -12,6 +12,7 @@ import { AuthService } from '../shared/services';
 export class LoginComponent {
   loading = false;
   errorMessage = '';
+  hidePassword = true;
 
   readonly form: FormGroup<{
     email: FormControl<string>;

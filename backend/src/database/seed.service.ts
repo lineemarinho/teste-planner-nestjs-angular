@@ -47,6 +47,7 @@ export class SeedService implements OnApplicationBootstrap {
           servings: 20,
           difficulty: RecipeDifficulty.EASY,
           categoryId: sobremesas.id,
+          imageUrl: 'https://loremflickr.com/600/400/brigadeiro,chocolate,dessert',
         },
         {
           title: 'Pudim de Leite',
@@ -58,6 +59,7 @@ export class SeedService implements OnApplicationBootstrap {
           servings: 8,
           difficulty: RecipeDifficulty.MEDIUM,
           categoryId: sobremesas.id,
+          imageUrl: 'https://loremflickr.com/600/400/pudding,caramel',
         },
         {
           title: 'Espaguete ao Alho e Óleo',
@@ -69,6 +71,7 @@ export class SeedService implements OnApplicationBootstrap {
           servings: 4,
           difficulty: RecipeDifficulty.EASY,
           categoryId: massas.id,
+          imageUrl: 'https://loremflickr.com/600/400/spaghetti,garlic,pasta',
         },
         {
           title: 'Lasanha à Bolonhesa',
@@ -81,6 +84,7 @@ export class SeedService implements OnApplicationBootstrap {
           servings: 6,
           difficulty: RecipeDifficulty.HARD,
           categoryId: massas.id,
+          imageUrl: 'https://loremflickr.com/600/400/lasagna',
         },
         {
           title: 'Salada Caesar',
@@ -93,6 +97,7 @@ export class SeedService implements OnApplicationBootstrap {
           servings: 2,
           difficulty: RecipeDifficulty.EASY,
           categoryId: saladas.id,
+          imageUrl: 'https://loremflickr.com/600/400/caesar,salad',
         },
         {
           title: 'Salada de Grão-de-Bico',
@@ -105,6 +110,7 @@ export class SeedService implements OnApplicationBootstrap {
           servings: 4,
           difficulty: RecipeDifficulty.EASY,
           categoryId: saladas.id,
+          imageUrl: 'https://loremflickr.com/600/400/chickpea,salad',
         },
         {
           title: 'Picanha na Brasa',
@@ -116,6 +122,7 @@ export class SeedService implements OnApplicationBootstrap {
           servings: 6,
           difficulty: RecipeDifficulty.MEDIUM,
           categoryId: carnes.id,
+          imageUrl: 'https://loremflickr.com/600/400/steak,grill,bbq',
         },
         {
           title: 'Strogonoff de Carne',
@@ -128,6 +135,7 @@ export class SeedService implements OnApplicationBootstrap {
           servings: 4,
           difficulty: RecipeDifficulty.MEDIUM,
           categoryId: carnes.id,
+          imageUrl: 'https://loremflickr.com/600/400/beef,stroganoff',
         },
       ]),
     );

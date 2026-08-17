@@ -6,14 +6,17 @@
 
     <nav class="nav-links">
       <a routerLink="/recipes" routerLinkActive="active">Receitas</a>
-      <a routerLink="/admin" routerLinkActive="active">Admin</a>
     </nav>
 
     @if (!isAuthenticated) {
       <a routerLink="/login" class="enter-button"> Entrar </a>
     }
     @if (isAuthenticated) {
-      <button type="button" class="enter-button" (click)="logout()">Sair</button>
+      <a routerLink="/admin" class="user-chip">
+        <mat-icon>account_circle</mat-icon>
+        <span>Olá!</span>
+        <mat-icon>chevron_right</mat-icon>
+      </a>
     }
   </div>
 </header>

@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { AutofocusModule } from '../shared/directives/autofocus';
 import { LoginRoutingModule } from './login-routing.module';
@@ -16,6 +17,7 @@ import { LoginComponent } from './login.component';
     ReactiveFormsModule,
     RouterModule,
     MatFormFieldModule,
+    MatIconModule,
     MatInputModule,
     MatButtonModule,
     AutofocusModule,
