@@ -7,70 +7,24 @@
 .inner {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 1.5rem;
+  padding: 1.5rem;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
-}
-
-.footer-brand {
-  max-width: 320px;
+  font-size: 0.85rem;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   text-decoration: none;
-  margin-bottom: 0.6rem;
 }
 
-.brand-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 8px;
-  background: var(--rh-coral);
-  font-size: 1.1rem;
-}
-
-.brand-name {
-  font-family: var(--rh-font-display);
-  font-weight: 800;
-  font-size: 1.15rem;
-  color: #fff;
-}
-
-.tagline {
-  margin: 0;
-  font-size: 0.88rem;
-  color: #a3a3a3;
-}
-
-.footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-
-  a {
-    color: #cbcbcb;
-    text-decoration: none;
-    font-size: 0.9rem;
-
-    &:hover {
-      color: var(--rh-coral);
-    }
-  }
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1rem 1.5rem;
-  text-align: center;
-  font-size: 0.8rem;
-  color: #888;
+.brand-logo {
+  display: block;
+  height: 22px;
+  width: auto;
+  filter: brightness(0) invert(1);
 }

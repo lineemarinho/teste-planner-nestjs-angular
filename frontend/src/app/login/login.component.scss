@@ -18,27 +18,14 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   text-decoration: none;
   margin-bottom: 2rem;
 }
 
-.brand-mark {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 9px;
-  background: var(--rh-coral);
-  font-size: 1.2rem;
-}
-
-.brand-name {
-  font-family: var(--rh-font-display);
-  font-weight: 800;
-  font-size: 1.35rem;
-  color: var(--rh-grafite);
+.brand-logo {
+  display: block;
+  height: 28px;
+  width: auto;
 }
 
 .login-card {
