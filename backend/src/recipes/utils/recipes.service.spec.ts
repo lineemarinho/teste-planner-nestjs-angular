@@ -7,7 +7,7 @@ import { Recipe, RecipeDifficulty } from './recipes.entity';
 import { RecipesService } from './recipes.service';
 
 jest.mock('fs/promises', () => ({
-  unlink: jest.fn(),
+  unlink: jest.fn().mockResolvedValue(undefined),
 }));
 
 describe('RecipesService', () => {

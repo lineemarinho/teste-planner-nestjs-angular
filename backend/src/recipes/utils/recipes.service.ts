@@ -1,12 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { unlink } from 'fs/promises';
-import { join } from 'path';
+import { basename, join } from 'path';
 import { ILike, Repository } from 'typeorm';
 import { Recipe } from './recipes.entity';
 import { CreateRecipeDto, UpdateRecipeDto } from './recipes.dto';
 import { RecipesFilterDto } from './recipes-filter.dto';
 import { PaginatedResult } from './paginated-result.interface';
+import { RECIPE_IMAGES_DIR } from './recipe-image-upload.config';
 
 const DEFAULT_PAGE = 1;
 const DEFAULT_LIMIT = 12;
@@ -88,12 +89,7 @@ export class RecipesService {
   }
 
   private async deleteImageFile(imageUrl: string): Promise<void> {
-    const filePath = join(process.cwd(), imageUrl);
-
-    try {
-      await unlink(filePath);
-    } catch {
-      // Arquivo já não existe ou não pôde ser removido — não bloqueia a operação principal.
-    }
+    const filePath = join(process.cwd(), RECIPE_IMAGES_DIR, basename(imageUrl));
+    await unlink(filePath).catch(() => undefined);
   }
 }
