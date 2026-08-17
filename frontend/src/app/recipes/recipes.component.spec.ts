@@ -42,9 +42,6 @@ describe('RecipesComponent', () => {
   }
 
   it('reacts to every search change, not just the first', () => {
-    // Regression test: the debounce Subject used to be typed <void>, so
-    // distinctUntilChanged() treated every emission as equal to the last and
-    // silently dropped all searches after the first one.
     const { component, recipesService } = createComponent();
 
     component.ngOnInit();

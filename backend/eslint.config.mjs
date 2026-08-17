@@ -1,4 +1,3 @@
-// @ts-check
 import eslint from '@eslint/js';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
@@ -35,8 +34,6 @@ export default tseslint.config(
   {
     files: ['**/*.spec.ts'],
     rules: {
-      // Jest mock assertions (e.g. `expect(repo.save).toHaveBeenCalled()`)
-      // routinely reference methods detached from their instance.
       '@typescript-eslint/unbound-method': 'off',
     },
   },
