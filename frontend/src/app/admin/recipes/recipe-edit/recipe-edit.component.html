@@ -5,34 +5,29 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Título</mat-label>
       <input matInput formControlName="title" appAutofocus />
-      <mat-error *ngIf="form.controls.title.hasError('required')">
-        Informe o título
-      </mat-error>
+      @if (form.controls.title.hasError('required')) {
+        <mat-error> Informe o título </mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Descrição (opcional)</mat-label>
-      <textarea
-        matInput
-        formControlName="description"
-        rows="2"
-      ></textarea>
+      <textarea matInput formControlName="description" rows="2"></textarea>
     </mat-form-field>
 
     <div class="image-upload">
-      <img
-        *ngIf="imagePreviewUrl"
-        [src]="imagePreviewUrl"
-        alt="Prévia da imagem da receita"
-        class="image-preview"
-      />
+      @if (imagePreviewUrl) {
+        <img [src]="imagePreviewUrl" alt="Prévia da imagem da receita" class="image-preview" />
+      }
       <button
         mat-stroked-button
         type="button"
         (click)="imageInput.click()"
         [disabled]="uploadingImage"
       >
-        {{ uploadingImage ? 'Enviando...' : (imagePreviewUrl ? 'Trocar imagem' : 'Selecionar imagem') }}
+        {{
+          uploadingImage ? 'Enviando...' : imagePreviewUrl ? 'Trocar imagem' : 'Selecionar imagem'
+        }}
       </button>
       <input
         #imageInput
@@ -41,7 +36,9 @@
         accept="image/jpeg,image/png,image/webp"
         (change)="onImageSelected($event)"
       />
-      <p *ngIf="uploadError" class="upload-error">{{ uploadError }}</p>
+      @if (uploadError) {
+        <p class="upload-error">{{ uploadError }}</p>
+      }
     </div>
 
     <mat-form-field appearance="outline" class="full-width">
@@ -52,9 +49,9 @@
         rows="4"
         placeholder="Um ingrediente por linha"
       ></textarea>
-      <mat-error *ngIf="form.controls.ingredients.hasError('required')">
-        Informe os ingredientes
-      </mat-error>
+      @if (form.controls.ingredients.hasError('required')) {
+        <mat-error> Informe os ingredientes </mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
@@ -65,26 +62,26 @@
         rows="4"
         placeholder="Um passo por linha"
       ></textarea>
-      <mat-error *ngIf="form.controls.instructions.hasError('required')">
-        Informe o modo de preparo
-      </mat-error>
+      @if (form.controls.instructions.hasError('required')) {
+        <mat-error> Informe o modo de preparo </mat-error>
+      }
     </mat-form-field>
 
     <div class="form-row">
       <mat-form-field appearance="outline">
         <mat-label>Tempo de Preparo (min)</mat-label>
         <input matInput type="number" formControlName="preparationTime" />
-        <mat-error *ngIf="form.controls.preparationTime.invalid">
-          Informe um tempo válido
-        </mat-error>
+        @if (form.controls.preparationTime.invalid) {
+          <mat-error> Informe um tempo válido </mat-error>
+        }
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Porções</mat-label>
         <input matInput type="number" formControlName="servings" />
-        <mat-error *ngIf="form.controls.servings.invalid">
-          Informe um número válido
-        </mat-error>
+        @if (form.controls.servings.invalid) {
+          <mat-error> Informe um número válido </mat-error>
+        }
       </mat-form-field>
     </div>
 
@@ -92,41 +89,32 @@
       <mat-form-field appearance="outline">
         <mat-label>Dificuldade</mat-label>
         <mat-select formControlName="difficulty">
-          <mat-option
-            *ngFor="let option of difficultyOptions"
-            [value]="option.value"
-          >
-            {{ option.label }}
-          </mat-option>
+          @for (option of difficultyOptions; track option.value) {
+            <mat-option [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+          }
         </mat-select>
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Categoria</mat-label>
         <mat-select formControlName="categoryId">
-          <mat-option
-            *ngFor="let category of categories"
-            [value]="category.id"
-          >
-            {{ category.name }}
-          </mat-option>
+          @for (category of categories; track category.id) {
+            <mat-option [value]="category.id">
+              {{ category.name }}
+            </mat-option>
+          }
         </mat-select>
-        <mat-error *ngIf="form.controls.categoryId.invalid">
-          Selecione uma categoria
-        </mat-error>
+        @if (form.controls.categoryId.invalid) {
+          <mat-error> Selecione uma categoria </mat-error>
+        }
       </mat-form-field>
     </div>
 
     <div class="form-actions">
-      <button mat-stroked-button type="button" (click)="onCancel()">
-        Cancelar
-      </button>
-      <button
-        mat-flat-button
-        color="primary"
-        type="submit"
-        [disabled]="saving"
-      >
+      <button mat-stroked-button type="button" (click)="onCancel()">Cancelar</button>
+      <button mat-flat-button color="primary" type="submit" [disabled]="saving">
         {{ saving ? 'Salvando...' : 'Salvar' }}
       </button>
     </div>

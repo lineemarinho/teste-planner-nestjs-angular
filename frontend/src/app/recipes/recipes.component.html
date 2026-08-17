@@ -5,16 +5,11 @@
     <span class="eyebrow">Cozinha de verdade</span>
     <h1>Receitas testadas, do café da manhã ao último prato da noite.</h1>
     <p class="hero-subtitle">
-      Busque pelo título ou filtre por categoria para encontrar o que cabe no
-      seu tempo.
+      Busque pelo título ou filtre por categoria para encontrar o que cabe no seu tempo.
     </p>
 
     <div class="hero-filters">
-      <mat-form-field
-        appearance="outline"
-        subscriptSizing="dynamic"
-        class="search-field"
-      >
+      <mat-form-field appearance="outline" subscriptSizing="dynamic" class="search-field">
         <mat-icon matPrefix>search</mat-icon>
         <input
           matInput
@@ -24,19 +19,14 @@
         />
       </mat-form-field>
 
-      <mat-form-field
-        appearance="outline"
-        subscriptSizing="dynamic"
-        class="category-field"
-      >
-        <mat-select
-          [(ngModel)]="categoryId"
-          (selectionChange)="onCategoryChange()"
-        >
+      <mat-form-field appearance="outline" subscriptSizing="dynamic" class="category-field">
+        <mat-select [(ngModel)]="categoryId" (selectionChange)="onCategoryChange()">
           <mat-option [value]="0">Todas as categorias</mat-option>
-          <mat-option *ngFor="let category of categories" [value]="category.id">
-            {{ category.name }}
-          </mat-option>
+          @for (category of categories; track category.id) {
+            <mat-option [value]="category.id">
+              {{ category.name }}
+            </mat-option>
+          }
         </mat-select>
       </mat-form-field>
     </div>
@@ -46,84 +36,63 @@
 <div class="recipes-page">
   <div class="results-header">
     <h2>Todas as receitas</h2>
-    <span class="results-count" *ngIf="!loading">{{ total }} resultado(s)</span>
+    @if (!loading) {
+      <span class="results-count">{{ total }} resultado(s)</span>
+    }
   </div>
 
-  <div class="recipes-grid" *ngIf="!loading; else loadingTpl">
-    <article
-      *ngFor="let recipe of recipes"
-      class="recipe-card"
-      (click)="openRecipe(recipe)"
-    >
-      <img
-        *ngIf="resolveImageUrl(recipe.imageUrl) as imageUrl; else imagePlaceholder"
-        [src]="imageUrl"
-        alt="{{ recipe.title }}"
-        class="recipe-image"
-      />
-      <ng-template #imagePlaceholder>
-        <div class="recipe-image recipe-image-placeholder">🍽</div>
-      </ng-template>
-
-      <div class="card-body">
-        <span class="eyebrow">{{ recipe.category?.name }}</span>
-        <h3 class="card-title">{{ recipe.title }}</h3>
-        <p class="card-description">{{ recipe.description | truncate: 90 }}</p>
-
-        <div class="card-divider"></div>
-
-        <div class="card-meta">
-          <span class="meta-item"
-            ><mat-icon>schedule</mat-icon>{{ recipe.preparationTime }} min</span
-          >
-          <span class="meta-item"
-            ><mat-icon>group</mat-icon>{{ recipe.servings }}</span
-          >
-          <app-difficulty-badge
-            [difficulty]="recipe.difficulty"
-          ></app-difficulty-badge>
-        </div>
-      </div>
-    </article>
-
-    <p *ngIf="recipes.length === 0" class="empty-state">
-      Nenhuma receita encontrada.
-    </p>
-  </div>
-
-  <nav class="pagination" *ngIf="!loading && totalPages > 1">
-    <button
-      type="button"
-      class="page-nav"
-      [disabled]="page === 1"
-      (click)="goToPage(page - 1)"
-    >
-      <mat-icon>chevron_left</mat-icon>
-    </button>
-
-    <button
-      *ngFor="let p of pagesArray"
-      type="button"
-      class="page-number"
-      [class.active]="page === p"
-      (click)="goToPage(p)"
-    >
-      {{ p }}
-    </button>
-
-    <button
-      type="button"
-      class="page-nav"
-      [disabled]="page === totalPages"
-      (click)="goToPage(page + 1)"
-    >
-      <mat-icon>chevron_right</mat-icon>
-    </button>
-  </nav>
-
-  <ng-template #loadingTpl>
+  @if (!loading) {
+    <div class="recipes-grid">
+      @for (recipe of recipes; track recipe.id) {
+        <article class="recipe-card" (click)="openRecipe(recipe)">
+          @if (resolveImageUrl(recipe.imageUrl); as imageUrl) {
+            <img [src]="imageUrl" alt="{{ recipe.title }}" class="recipe-image" />
+          } @else {
+            <div class="recipe-image recipe-image-placeholder">🍽</div>
+          }
+          <div class="card-body">
+            <span class="eyebrow">{{ recipe.category?.name }}</span>
+            <h3 class="card-title">{{ recipe.title }}</h3>
+            <p class="card-description">{{ recipe.description | truncate: 90 }}</p>
+            <div class="card-divider"></div>
+            <div class="card-meta">
+              <span class="meta-item"
+                ><mat-icon>schedule</mat-icon>{{ recipe.preparationTime }} min</span
+              >
+              <span class="meta-item"><mat-icon>group</mat-icon>{{ recipe.servings }}</span>
+              <app-difficulty-badge [difficulty]="recipe.difficulty"></app-difficulty-badge>
+            </div>
+          </div>
+        </article>
+      }
+      @if (recipes.length === 0) {
+        <p class="empty-state">Nenhuma receita encontrada.</p>
+      }
+    </div>
+  } @else {
     <p class="loading-state">Carregando receitas...</p>
-  </ng-template>
+  }
+
+  @if (!loading && totalPages > 1) {
+    <nav class="pagination">
+      <button type="button" class="page-nav" [disabled]="page === 1" (click)="goToPage(page - 1)">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      @for (p of pagesArray; track p) {
+        <button type="button" class="page-number" [class.active]="page === p" (click)="goToPage(p)">
+          {{ p }}
+        </button>
+      }
+      <button
+        type="button"
+        class="page-nav"
+        [disabled]="page === totalPages"
+        (click)="goToPage(page + 1)"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </nav>
+  }
 </div>
 
 <app-public-footer></app-public-footer>

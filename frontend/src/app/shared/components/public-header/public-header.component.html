@@ -10,16 +10,11 @@
       <a routerLink="/admin" routerLinkActive="active">Admin</a>
     </nav>
 
-    <a *ngIf="!isAuthenticated" routerLink="/login" class="enter-button">
-      Entrar
-    </a>
-    <button
-      *ngIf="isAuthenticated"
-      type="button"
-      class="enter-button"
-      (click)="logout()"
-    >
-      Sair
-    </button>
+    @if (!isAuthenticated) {
+      <a routerLink="/login" class="enter-button"> Entrar </a>
+    }
+    @if (isAuthenticated) {
+      <button type="button" class="enter-button" (click)="logout()">Sair</button>
+    }
   </div>
 </header>

@@ -3,57 +3,45 @@
 <div class="recipe-detail-page">
   <a routerLink="/recipes" class="back-link">&larr; Voltar para receitas</a>
 
-  <ng-container *ngIf="!loading && recipe; else loadingTpl">
-    <img
-      *ngIf="imageUrl"
-      [src]="imageUrl"
-      alt="{{ recipe.title }}"
-      class="detail-image"
-    />
-
+  @if (!loading && recipe) {
+    @if (imageUrl) {
+      <img [src]="imageUrl" alt="{{ recipe.title }}" class="detail-image" />
+    }
     <header class="detail-header">
       <span class="eyebrow">{{ recipe.category?.name }}</span>
       <h1>{{ recipe.title }}</h1>
       <p class="description">{{ recipe.description }}</p>
-
       <div class="meta-pills">
-        <span class="meta-pill"
-          ><mat-icon>schedule</mat-icon>{{ recipe.preparationTime }} min</span
-        >
-        <span class="meta-pill"
-          ><mat-icon>group</mat-icon>{{ recipe.servings }} porções</span
-        >
-        <app-difficulty-badge
-          [difficulty]="recipe.difficulty"
-        ></app-difficulty-badge>
+        <span class="meta-pill"><mat-icon>schedule</mat-icon>{{ recipe.preparationTime }} min</span>
+        <span class="meta-pill"><mat-icon>group</mat-icon>{{ recipe.servings }} porções</span>
+        <app-difficulty-badge [difficulty]="recipe.difficulty"></app-difficulty-badge>
       </div>
     </header>
-
     <div class="detail-divider"></div>
-
     <div class="detail-body">
       <section class="ingredients">
         <h2><mat-icon>restaurant</mat-icon> Ingredientes</h2>
         <ul>
-          <li *ngFor="let ingredient of ingredientsList">{{ ingredient }}</li>
+          @for (ingredient of ingredientsList; track $index) {
+            <li>{{ ingredient }}</li>
+          }
         </ul>
       </section>
-
       <section class="instructions">
         <h2>Modo de Preparo</h2>
         <ol>
-          <li *ngFor="let step of instructionsSteps; let i = index">
-            <span class="step-number">{{ i + 1 }}</span>
-            <span class="step-text">{{ step }}</span>
-          </li>
+          @for (step of instructionsSteps; track $index; let i = $index) {
+            <li>
+              <span class="step-number">{{ i + 1 }}</span>
+              <span class="step-text">{{ step }}</span>
+            </li>
+          }
         </ol>
       </section>
     </div>
-  </ng-container>
-
-  <ng-template #loadingTpl>
+  } @else {
     <p class="loading-state">Carregando receita...</p>
-  </ng-template>
+  }
 </div>
 
 <app-public-footer></app-public-footer>

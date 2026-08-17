@@ -5,30 +5,19 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Nome</mat-label>
       <input matInput formControlName="name" appAutofocus />
-      <mat-error *ngIf="form.controls.name.hasError('required')">
-        Informe o nome
-      </mat-error>
+      @if (form.controls.name.hasError('required')) {
+        <mat-error> Informe o nome </mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Descrição (opcional)</mat-label>
-      <textarea
-        matInput
-        formControlName="description"
-        rows="3"
-      ></textarea>
+      <textarea matInput formControlName="description" rows="3"></textarea>
     </mat-form-field>
 
     <div class="form-actions">
-      <button mat-stroked-button type="button" (click)="onCancel()">
-        Cancelar
-      </button>
-      <button
-        mat-flat-button
-        color="primary"
-        type="submit"
-        [disabled]="saving"
-      >
+      <button mat-stroked-button type="button" (click)="onCancel()">Cancelar</button>
+      <button mat-flat-button color="primary" type="submit" [disabled]="saving">
         {{ saving ? 'Salvando...' : 'Salvar' }}
       </button>
     </div>
