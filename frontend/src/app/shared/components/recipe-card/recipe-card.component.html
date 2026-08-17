@@ -7,7 +7,7 @@
 
   <div class="card-body">
     <span class="eyebrow">{{ recipe.category?.name }}</span>
-    <h3 class="card-title">{{ recipe.title }}</h3>
+    <h3 class="card-title" [title]="recipe.title">{{ recipe.title }}</h3>
     <p class="card-description">{{ recipe.description | truncate: 90 }}</p>
 
     <div class="card-divider"></div>
