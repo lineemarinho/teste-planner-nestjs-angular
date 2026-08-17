@@ -1,24 +1,5 @@
 <div class="admin-layout">
-  <header class="admin-header">
-    <div class="inner">
-      <a routerLink="/admin" class="brand">
-        <img src="/recipehub-logo.svg" alt="RecipeHub" class="brand-logo" />
-        <span class="brand-tag">Admin</span>
-      </a>
-
-      <nav class="nav-links">
-        <a routerLink="/admin/recipes" routerLinkActive="active">Receitas</a>
-        <a routerLink="/admin/categories" routerLinkActive="active"
-          >Categorias</a
-        >
-        <a routerLink="/recipes" target="_blank">Ver site público</a>
-      </nav>
-
-      <button class="logout-button" type="button" (click)="logout()">
-        Sair
-      </button>
-    </div>
-  </header>
+  <app-admin-header></app-admin-header>
 
   <main class="admin-content">
     <router-outlet></router-outlet>

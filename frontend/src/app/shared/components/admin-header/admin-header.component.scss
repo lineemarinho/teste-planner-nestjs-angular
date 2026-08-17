@@ -1,10 +1,10 @@
-.public-header {
+.admin-header {
   background: var(--rh-surface);
   border-bottom: 1px solid var(--rh-border);
 }
 
 .inner {
-  max-width: var(--rh-container-width);
+  max-width: 1200px;
   margin: 0 auto;
   padding: 1rem 1.5rem;
   display: flex;
@@ -15,6 +15,7 @@
 .brand {
   display: flex;
   align-items: center;
+  gap: 0.6rem;
   text-decoration: none;
 }
 
@@ -22,6 +23,17 @@
   display: block;
   height: 24px;
   width: auto;
+}
+
+.brand-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--rh-coral-dark);
+  background: var(--rh-coral-light);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
 }
 
 .nav-links {
@@ -43,19 +55,18 @@
   }
 }
 
-.enter-button {
-  background: var(--rh-coral);
-  color: #fff;
-  text-decoration: none;
+.logout-button {
+  background: none;
+  border: 1px solid var(--rh-border);
+  color: var(--rh-grafite-soft);
   font-weight: 600;
-  font-family: inherit;
   font-size: 0.88rem;
   padding: 0.5rem 1.15rem;
-  border: none;
   border-radius: 999px;
   cursor: pointer;
 
   &:hover {
-    background: var(--rh-coral-dark);
+    border-color: var(--rh-coral);
+    color: var(--rh-coral);
   }
 }
