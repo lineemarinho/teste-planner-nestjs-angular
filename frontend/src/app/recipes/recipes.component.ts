@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
-import { resolveImageUrl } from '../shared/constants';
 import { Category, Recipe } from '../shared/models';
 import { CategoriesService, RecipesService } from '../shared/services';
 
@@ -29,7 +27,6 @@ export class RecipesComponent implements OnInit {
   constructor(
     private readonly recipesService: RecipesService,
     private readonly categoriesService: CategoriesService,
-    private readonly router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -67,14 +64,6 @@ export class RecipesComponent implements OnInit {
 
     this.page = page;
     this.loadRecipes();
-  }
-
-  openRecipe(recipe: Recipe): void {
-    this.router.navigate(['/recipes', recipe.id]);
-  }
-
-  resolveImageUrl(imageUrl?: string | null): string | null {
-    return resolveImageUrl(imageUrl);
   }
 
   private loadRecipes(): void {

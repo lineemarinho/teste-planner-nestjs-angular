@@ -1,4 +1,3 @@
-import { Router } from '@angular/router';
 import { of } from 'rxjs';
 import { PaginatedResult, Recipe } from '../shared/models';
 import { CategoriesService, RecipesService } from '../shared/services';
@@ -30,13 +29,7 @@ describe('RecipesComponent', () => {
       findAll: vi.fn().mockReturnValue(of([])),
     } as unknown as CategoriesService;
 
-    const router = { navigate: vi.fn() } as unknown as Router;
-
-    const component = new RecipesComponent(
-      recipesService,
-      categoriesService,
-      router,
-    );
+    const component = new RecipesComponent(recipesService, categoriesService);
 
     return { component, recipesService };
   }

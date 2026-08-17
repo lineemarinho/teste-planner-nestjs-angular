@@ -6,10 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { DifficultyBadgeModule } from '../shared/components/difficulty-badge';
 import { PublicFooterModule } from '../shared/components/public-footer';
 import { PublicHeaderModule } from '../shared/components/public-header';
-import { TruncateModule } from '../shared/pipes/truncate';
+import { RecipeCardModule } from '../shared/components/recipe-card';
 import { RecipesRoutingModule } from './recipes-routing.module';
 import { RecipesComponent } from './recipes.component';
 
@@ -23,10 +22,9 @@ import { RecipesComponent } from './recipes.component';
     MatIconModule,
     MatInputModule,
     MatSelectModule,
-    DifficultyBadgeModule,
     PublicFooterModule,
     PublicHeaderModule,
-    TruncateModule,
+    RecipeCardModule,
     RecipesRoutingModule,
   ],
 })

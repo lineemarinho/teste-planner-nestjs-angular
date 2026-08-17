@@ -44,26 +44,7 @@
   @if (!loading) {
     <div class="recipes-grid">
       @for (recipe of recipes; track recipe.id) {
-        <article class="recipe-card" (click)="openRecipe(recipe)">
-          @if (resolveImageUrl(recipe.imageUrl); as imageUrl) {
-            <img [src]="imageUrl" alt="{{ recipe.title }}" class="recipe-image" />
-          } @else {
-            <div class="recipe-image recipe-image-placeholder">🍽</div>
-          }
-          <div class="card-body">
-            <span class="eyebrow">{{ recipe.category?.name }}</span>
-            <h3 class="card-title">{{ recipe.title }}</h3>
-            <p class="card-description">{{ recipe.description | truncate: 90 }}</p>
-            <div class="card-divider"></div>
-            <div class="card-meta">
-              <span class="meta-item"
-                ><mat-icon>schedule</mat-icon>{{ recipe.preparationTime }} min</span
-              >
-              <span class="meta-item"><mat-icon>group</mat-icon>{{ recipe.servings }}</span>
-              <app-difficulty-badge [difficulty]="recipe.difficulty"></app-difficulty-badge>
-            </div>
-          </div>
-        </article>
+        <app-recipe-card [recipe]="recipe"></app-recipe-card>
       }
       @if (recipes.length === 0) {
         <p class="empty-state">Nenhuma receita encontrada.</p>
