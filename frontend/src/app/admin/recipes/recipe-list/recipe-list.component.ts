@@ -12,6 +12,7 @@ import { RecipesService } from '../../../shared/services';
 export class RecipeListComponent implements OnInit {
   recipes: Recipe[] = [];
   displayedColumns = ['title', 'category', 'difficulty', 'preparationTime', 'actions'];
+  deletingId: number | null = null;
 
   constructor(
     private readonly recipesService: RecipesService,
@@ -35,7 +36,17 @@ export class RecipeListComponent implements OnInit {
       return;
     }
 
-    this.recipesService.remove(recipe.id).subscribe(() => this.loadRecipes());
+    this.deletingId = recipe.id;
+
+    this.recipesService.remove(recipe.id).subscribe({
+      next: () => {
+        this.deletingId = null;
+        this.loadRecipes();
+      },
+      error: () => {
+        this.deletingId = null;
+      },
+    });
   }
 
   private loadRecipes(): void {

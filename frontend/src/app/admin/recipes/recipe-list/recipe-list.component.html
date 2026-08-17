@@ -31,11 +31,26 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell *matCellDef="let recipe" class="actions-cell">
-          <button mat-icon-button (click)="onEdit(recipe)" aria-label="Editar">
+          <button
+            mat-icon-button
+            (click)="onEdit(recipe)"
+            [disabled]="deletingId === recipe.id"
+            aria-label="Editar"
+          >
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button color="warn" (click)="onDelete(recipe)" aria-label="Excluir">
-            <mat-icon>delete</mat-icon>
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="onDelete(recipe)"
+            [disabled]="deletingId === recipe.id"
+            aria-label="Excluir"
+          >
+            @if (deletingId === recipe.id) {
+              <mat-spinner diameter="20"></mat-spinner>
+            } @else {
+              <mat-icon>delete</mat-icon>
+            }
           </button>
         </td>
       </ng-container>
